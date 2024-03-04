@@ -1,16 +1,19 @@
-/* .newsStand {
-    display: flex;
-    margin: 58px 175px;
-}
-
-.top-area {
+header {
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    width: 70%;
+    height: 104px;
+    margin-top: 65px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .date {
+    width: 140px;
+    height: 22px;
     font-weight: 500;
     font-size: 16px;
     color: rgba(95, 110, 118, 1);
-} */
+}
 
