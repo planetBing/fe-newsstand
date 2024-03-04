@@ -50,3 +50,33 @@ header {
     color: rgba(95, 110, 118, 1);
     text-decoration: none;
 }
+
+.tap-viewer-area {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 930px;
+    height: 24px;
+    margin-top: 30px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.tap-viewer-area .tap {
+    display: flex;
+    justify-content: space-between;
+    width: 216px;
+    height: 22px;
+}
+
+.tap-viewer-area .tap .on {
+    font-weight: 700;
+    font-size: 16px;
+    color: rgba(20, 33, 43, 1);
+}
+
+.tap-viewer-area .tap .off {
+    font-weight: 500;
+    font-size: 16px;
+    color: rgba(135, 146, 152, 1)
+}
