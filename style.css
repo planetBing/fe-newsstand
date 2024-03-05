@@ -1,7 +1,10 @@
-header {
+.flexbox-space-between {
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.top-area {
     width: 930px;
     height: 49px;
     margin-left: auto;
@@ -17,9 +20,6 @@ header {
 }
 
 .auto-rolling-area {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     width: 930px;
     height: 49px;
     margin-left: auto;
@@ -51,9 +51,6 @@ header {
 }
 
 .tap-viewer-area {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     width: 930px;
     height: 24px;
     margin-top: 30px;
@@ -62,8 +59,6 @@ header {
 }
 
 .tap-viewer-area .tap {
-    display: flex;
-    justify-content: space-between;
     width: 216px;
     height: 22px;
 }
