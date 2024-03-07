@@ -78,7 +78,7 @@
   color: rgba(135, 146, 152, 1);
 }
 
-main {
+.press-grid {
   width: 930px;
   height: 388px;
   display: grid;
