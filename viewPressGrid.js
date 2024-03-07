@@ -34,7 +34,8 @@ async function getLogoImgSrc() {
     const response = await fetch("logoImg.json");
     const imgData = await response.json();
     const imgSrcArr = Object.values(imgData).map((obj) => obj.src);
-    return imgSrcArr;
+    const shuffledImgSrcArr = imgSrcArr.sort(() => Math.random() - 0.5);
+    return shuffledImgSrcArr;
   } catch (err) {
     console.error("JSON 파일을 가져오는 도중 에러 발생.", error);
     throw error;
