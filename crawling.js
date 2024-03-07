@@ -15,7 +15,7 @@ async function main() {
     const imgSrc = await eh.$eval("img", function (el) {
       return el.src;
     });
-    const imgObj = { img: imgSrc };
+    const imgObj = { src: imgSrc };
     imgSrcArr.push(imgObj);
   }
 
@@ -27,7 +27,7 @@ async function main() {
     const imgSrc = await eh.$eval("img", function (el) {
       return el.src;
     });
-    const imgObj = { img: imgSrc };
+    const imgObj = { src: imgSrc };
     imgSrcArr.push(imgObj);
   }
 
@@ -39,7 +39,7 @@ async function main() {
     const imgSrc = await eh.$eval("img", function (el) {
       return el.src;
     });
-    const imgObj = { img: imgSrc };
+    const imgObj = { src: imgSrc };
     imgSrcArr.push(imgObj);
   }
 
