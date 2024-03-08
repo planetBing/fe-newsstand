@@ -17,7 +17,7 @@ export async function viewPressGrid() {
 
 async function getLogoImgSrc() {
   try {
-    const response = await fetch("logoImg.json");
+    const response = await fetch("./data/logoImg.json");
     const imgData = await response.json();
     const imgSrcArr = Object.values(imgData).map((obj) => obj.src);
     const shuffledImgSrcArr = imgSrcArr.sort(() => Math.random() - 0.5);
