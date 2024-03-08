@@ -38,10 +38,14 @@ function viewPressLogo(pageData, logoSrcArr, pressGridEl) {
 const addChildEl = (src) => {
   const newPressBox = document.createElement("div");
   const newsLogo = document.createElement("img");
+  const subsBtn = document.createElement("span");
   newsLogo.src = src;
+  subsBtn.innerText = "+ 구독하기";
   newPressBox.classList.add("press-box");
   newsLogo.classList.add("press-logo");
+  subsBtn.classList.add("subs");
   newPressBox.appendChild(newsLogo);
+  newPressBox.appendChild(subsBtn);
   pressGridEl.appendChild(newPressBox);
 };
 

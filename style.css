@@ -95,11 +95,38 @@
   align-items: center;
   border-bottom: 1px solid rgba(210, 218, 224, 1);
   border-right: 1px solid rgba(210, 218, 224, 1);
+  height: auto;
+  height: 97px;
 }
 
 .press-logo {
-  width: 50%;
-  height: auto;
+  max-width: 50%;
+  object-fit: contain;
+}
+
+.press-box .subs {
+  display: none;
+}
+
+.press-box:hover .subs {
+  display: block;
+  font-size: 13px;
+  text-align: center;
+  line-height: 24px;
+  color: #879298;
+  width: 72px;
+  height: 24px;
+  padding: auto;
+  border: 1px solid rgba(210, 218, 224, 1);
+  border-radius: 50px;
+}
+
+.press-box:hover .press-logo {
+  display: none;
+}
+
+.subs :hover {
+  display: block;
 }
 
 body {
