@@ -1,32 +1,18 @@
 let currentPage = 0;
 const itemsPerPage = 24;
 
-export async function viewPressGrid() {
-  const logoSrcArr = await getLogoImgSrc();
-  const pressGridEl = document.querySelector(".press-grid");
-  const nextButton = document.querySelector(".right-button");
-  const prevButton = document.querySelector(".left-button");
-  const pageData = { currentPage, itemsPerPage };
+const logoSrcArr = await getLogoImgSrc();
+const pressGridEl = document.querySelector(".press-grid");
+const nextButton = document.querySelector(".right-button");
+const prevButton = document.querySelector(".left-button");
+const pageData = { currentPage, itemsPerPage };
 
+export async function viewPressGrid() {
   viewPressLogo(pageData, logoSrcArr, pressGridEl);
 
-  nextButton.addEventListener("click", (event) => {
-    event.preventDefault();
-    pageData.currentPage++;
-    clearPressGrid();
-    viewPressLogo(pageData, logoSrcArr, pressGridEl);
-    if (pageData.currentPage === 3) nextButton.classList.add("hidden");
-    if (pageData.currentPage !== 0) prevButton.classList.remove("hidden");
-  });
+  nextButton.addEventListener("click", gotoNextPage);
 
-  prevButton.addEventListener("click", (event) => {
-    event.preventDefault();
-    pageData.currentPage--;
-    clearPressGrid();
-    viewPressLogo(pageData, logoSrcArr, pressGridEl);
-    if (pageData.currentPage !== 3) nextButton.classList.remove("hidden");
-    if (pageData.currentPage === 0) prevButton.classList.add("hidden");
-  });
+  prevButton.addEventListener("click", gotoPrevPage);
 }
 
 async function getLogoImgSrc() {
@@ -45,22 +31,37 @@ async function getLogoImgSrc() {
 function viewPressLogo(pageData, logoSrcArr, pressGridEl) {
   const startIndex = pageData.currentPage * itemsPerPage;
   const endIndex = startIndex + pageData.itemsPerPage;
-  const logoIndex = { startIndex, endIndex };
 
-  addChildEl(pressGridEl, logoSrcArr, logoIndex);
+  logoSrcArr.slice(startIndex, endIndex).forEach(addChildEl);
 }
 
-function addChildEl(pressGridEl, logoSrcArr, logoIndex) {
-  logoSrcArr.slice(logoIndex.startIndex, logoIndex.endIndex).forEach((src) => {
-    const newPressBox = document.createElement("div");
-    const newsLogo = document.createElement("img");
-    newsLogo.src = src;
-    newPressBox.classList.add("press-box");
-    newsLogo.classList.add("press-logo");
-    newPressBox.appendChild(newsLogo);
-    pressGridEl.appendChild(newPressBox);
-  });
-}
+const addChildEl = (src) => {
+  const newPressBox = document.createElement("div");
+  const newsLogo = document.createElement("img");
+  newsLogo.src = src;
+  newPressBox.classList.add("press-box");
+  newsLogo.classList.add("press-logo");
+  newPressBox.appendChild(newsLogo);
+  pressGridEl.appendChild(newPressBox);
+};
+
+const gotoNextPage = (event) => {
+  event.preventDefault();
+  pageData.currentPage++;
+  clearPressGrid();
+  viewPressLogo(pageData, logoSrcArr, pressGridEl);
+  if (pageData.currentPage === 3) nextButton.classList.add("hidden");
+  if (pageData.currentPage !== 0) prevButton.classList.remove("hidden");
+};
+
+const gotoPrevPage = (event) => {
+  event.preventDefault();
+  pageData.currentPage--;
+  clearPressGrid();
+  viewPressLogo(pageData, logoSrcArr, pressGridEl);
+  if (pageData.currentPage !== 3) nextButton.classList.remove("hidden");
+  if (pageData.currentPage === 0) prevButton.classList.add("hidden");
+};
 
 function clearPressGrid() {
   const pressBoxes = document.querySelectorAll(".press-box");
