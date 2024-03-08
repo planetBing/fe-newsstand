@@ -82,6 +82,16 @@
   color: rgba(135, 146, 152, 1);
 }
 
+.viewer i {
+  font-size: 20px;
+  color: #879298;
+  margin: 5px;
+}
+
+.viewer .on {
+  color: #4362d0;
+}
+
 .press-grid {
   width: 930px;
   height: 388px;
