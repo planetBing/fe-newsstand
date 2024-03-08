@@ -1,3 +1,10 @@
+export function handleReload() {
+  const newsStandLogo = document.querySelector(".newsStand-logo");
+  newsStandLogo.addEventListener("click", (event) => {
+    location.reload();
+  });
+}
+
 function parseDate() {
   const date = new Date();
   const dayOfWeek = new Intl.DateTimeFormat("ko", {

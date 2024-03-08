@@ -1,7 +1,8 @@
 import { viewPressGrid } from "./viewPressGrid.js";
-import { viewDate } from "./viewDate.js";
+import { handleReload, viewDate } from "./viewHeader.js";
 
 function main() {
+  handleReload();
   viewDate();
   viewPressGrid();
 }
