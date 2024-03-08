@@ -28,14 +28,14 @@ async function getLogoImgSrc() {
   }
 }
 
-function viewPressLogo(pageData, logoSrcArr, pressGridEl) {
+function viewPressLogo(pageData, logoSrcArr) {
   const startIndex = pageData.currentPage * itemsPerPage;
   const endIndex = startIndex + pageData.itemsPerPage;
 
-  logoSrcArr.slice(startIndex, endIndex).forEach(addChildEl);
+  logoSrcArr.slice(startIndex, endIndex).forEach(addPressLogoAndBox);
 }
 
-const addChildEl = (src) => {
+const addPressLogoAndBox = (src) => {
   const newPressBox = document.createElement("div");
   const newsLogo = document.createElement("img");
   const subsBtn = document.createElement("span");
@@ -44,6 +44,7 @@ const addChildEl = (src) => {
   newPressBox.classList.add("press-box");
   newsLogo.classList.add("press-logo");
   subsBtn.classList.add("subs");
+  subsBtn.classList.add("pointer");
   newPressBox.appendChild(newsLogo);
   newPressBox.appendChild(subsBtn);
   pressGridEl.appendChild(newPressBox);

@@ -9,6 +9,10 @@
   margin-right: auto;
 }
 
+.pointer {
+  cursor: pointer;
+}
+
 .top-area {
   width: 930px;
   height: 49px;
