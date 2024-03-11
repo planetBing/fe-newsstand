@@ -23,8 +23,7 @@ async function getLogoImgSrc() {
     const shuffledImgSrcArr = imgSrcArr.sort(() => Math.random() - 0.5);
     return shuffledImgSrcArr;
   } catch (err) {
-    console.error("JSON 파일을 가져오는 도중 에러 발생.", error);
-    throw error;
+    console.error("JSON 파일을 가져오는 도중 에러 발생.", err);
   }
 }
 
