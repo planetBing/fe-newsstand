@@ -44,8 +44,7 @@ const addPressLogoAndBox = (src) => {
   subsBtn.innerText = "+ 구독하기";
   newPressBox.classList.add("press-box");
   newsLogo.classList.add("press-logo");
-  subsBtn.classList.add("subs");
-  subsBtn.classList.add("pointer");
+  subsBtn.classList.add("subs", "pointer");
   newPressBox.appendChild(newsLogo);
   newPressBox.appendChild(subsBtn);
   pressGridEl.appendChild(newPressBox);
