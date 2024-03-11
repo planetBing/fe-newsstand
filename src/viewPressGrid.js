@@ -1,5 +1,7 @@
 let currentPage = 0;
 const itemsPerPage = 24;
+const LAST_PAGE = 3;
+const FIRST_PAGE = 0;
 
 const logoSrcArr = await getLogoImgSrc();
 const pressGridEl = document.querySelector(".press-grid");
@@ -7,7 +9,7 @@ const nextButton = document.querySelector(".right-button");
 const prevButton = document.querySelector(".left-button");
 const pageData = { currentPage, itemsPerPage };
 
-export async function viewPressGrid() {
+export async function initPressGridView() {
   viewPressLogo(pageData, logoSrcArr, pressGridEl);
 
   nextButton.addEventListener("click", gotoNextPage);
@@ -54,8 +56,9 @@ const gotoNextPage = (event) => {
   pageData.currentPage++;
   clearPressGrid();
   viewPressLogo(pageData, logoSrcArr, pressGridEl);
-  if (pageData.currentPage === 3) nextButton.classList.add("hidden");
-  if (pageData.currentPage !== 0) prevButton.classList.remove("hidden");
+  if (pageData.currentPage === LAST_PAGE) nextButton.classList.add("hidden");
+  if (pageData.currentPage !== FIRST_PAGE)
+    prevButton.classList.remove("hidden");
 };
 
 const gotoPrevPage = (event) => {
@@ -63,8 +66,8 @@ const gotoPrevPage = (event) => {
   pageData.currentPage--;
   clearPressGrid();
   viewPressLogo(pageData, logoSrcArr, pressGridEl);
-  if (pageData.currentPage !== 3) nextButton.classList.remove("hidden");
-  if (pageData.currentPage === 0) prevButton.classList.add("hidden");
+  if (pageData.currentPage !== LAST_PAGE) nextButton.classList.remove("hidden");
+  if (pageData.currentPage === FIRST_PAGE) prevButton.classList.add("hidden");
 };
 
 function clearPressGrid() {

@@ -1,3 +1,5 @@
+const DAYOFWEEK_INDEX = 3;
+
 export function handleReload() {
   const newsStandLogo = document.querySelector(".newsStand-logo");
   newsStandLogo.addEventListener("click", (event) => {
@@ -11,7 +13,7 @@ function parseDate() {
     dateStyle: "full",
   })
     .format(date)
-    .split(" ")[3];
+    .split(" ")[DAYOFWEEK_INDEX];
   const yearMonthDay = new Intl.DateTimeFormat("ko-KR").format(date);
   const todayDate = `${yearMonthDay} ${dayOfWeek}`;
   return todayDate;
