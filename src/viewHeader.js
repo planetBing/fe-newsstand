@@ -7,7 +7,7 @@ export function handleReload() {
   });
 }
 
-function parseDate() {
+function getTodayDate() {
   const date = new Date();
   const dayOfWeek = new Intl.DateTimeFormat("ko", {
     dateStyle: "full",
@@ -21,6 +21,6 @@ function parseDate() {
 
 export function viewDate() {
   const dateEl = document.querySelector(".date");
-  const dateStr = parseDate();
+  const dateStr = getTodayDate();
   dateEl.innerText = dateStr;
 }
