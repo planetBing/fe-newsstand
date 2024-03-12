@@ -43,7 +43,7 @@ function applyClasses(newsList) {
 
 function rollHeadlinesByDelay(headlineBox, delay) {
   setTimeout(() => {
-    const intervalId = setInterval(() => {
+    let intervalId = setInterval(() => {
       rollingCallback(headlineBox);
     }, ROLL_INTERVAL);
 
