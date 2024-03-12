@@ -1,4 +1,4 @@
-import { breakingNews } from "../data/breakingNews.js";
+import { breakingNews } from "../../data/breakingNews.js";
 
 const BOX1_RANGE = [0, 5];
 const BOX2_RANGE = [5, 10];

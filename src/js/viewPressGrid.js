@@ -17,6 +17,19 @@ export async function initPressGridView() {
   prevButton.addEventListener("click", gotoPrevPage);
 }
 
+export function switchToGridByViewer() {
+  const girdViewer = document.querySelector(".viewer-grid");
+  const listViewer = document.querySelector(".viewer-list");
+  const mainEl = document.querySelector("main");
+
+  girdViewer.addEventListener("click", (event) => {
+    initPressGridView();
+    girdViewer.classList.add("on");
+    listViewer.classList.remove("on");
+    mainEl.classList.add("press-grid", "center-alignment");
+  });
+}
+
 async function getLogoImgSrc() {
   try {
     const response = await fetch("./data/logoImg.json");
