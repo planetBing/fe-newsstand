@@ -44,9 +44,19 @@ function applyClasses(newsList) {
 }
 
 function rollHeadlines(headlineBox) {
-  setInterval(() => {
+  const intervalId = setInterval(() => {
     rollingCallback(headlineBox);
   }, ROLL_INTERVAL);
+
+  headlineBox.addEventListener("mouseenter", () => {
+    clearInterval(intervalId);
+  });
+
+  headlineBox.addEventListener("mouseleave", () => {
+    intervalId = setInterval(() => {
+      rollingCallback(headlineBox);
+    }, ROLL_INTERVAL);
+  });
 }
 
 function rollingCallback(headlineBox) {
