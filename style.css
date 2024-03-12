@@ -90,11 +90,6 @@ li.next {
 
 .rolling-wrap a:hover {
   text-decoration: underline;
-  pointer-events: none;
-}
-
-.rolling-wrap li:hover {
-  pointer-events: none;
 }
 
 .tap-viewer-area {

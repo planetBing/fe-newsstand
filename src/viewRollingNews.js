@@ -13,10 +13,8 @@ export function initAndRollNews() {
   initRollingNews(headlineBox1, BOX1_RANGE);
   initRollingNews(headlineBox2, BOX2_RANGE);
 
-  rollHeadlines(headlineBox1);
-  setTimeout(() => {
-    rollHeadlines(headlineBox2);
-  }, TIME_DIFFERENCE);
+  rollHeadlinesByDelay(headlineBox1, 0);
+  rollHeadlinesByDelay(headlineBox2, TIME_DIFFERENCE);
 }
 
 function initRollingNews(headlineBox, BOX_RANGE) {
@@ -43,20 +41,22 @@ function applyClasses(newsList) {
   }
 }
 
-function rollHeadlines(headlineBox) {
-  const intervalId = setInterval(() => {
-    rollingCallback(headlineBox);
-  }, ROLL_INTERVAL);
-
-  headlineBox.addEventListener("mouseenter", () => {
-    clearInterval(intervalId);
-  });
-
-  headlineBox.addEventListener("mouseleave", () => {
-    intervalId = setInterval(() => {
+function rollHeadlinesByDelay(headlineBox, delay) {
+  setTimeout(() => {
+    const intervalId = setInterval(() => {
       rollingCallback(headlineBox);
     }, ROLL_INTERVAL);
-  });
+
+    headlineBox.addEventListener("mouseenter", () => {
+      clearInterval(intervalId);
+    });
+
+    headlineBox.addEventListener("mouseleave", () => {
+      intervalId = setInterval(() => {
+        rollingCallback(headlineBox);
+      }, ROLL_INTERVAL);
+    });
+  }, delay);
 }
 
 function rollingCallback(headlineBox) {
