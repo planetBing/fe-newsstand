@@ -61,25 +61,4 @@ async function main() {
   browser.close();
 }
 
-// main();
-
-// async function crawlBreakingNews() {
-//   const browser = await pupppeteer.launch({ headless: false });
-//   const page = await browser.newPage();
-
-//   await page.goto(
-//     "https://news.naver.com/main/list.naver?mode=LPOD&sid2=140&sid1=001&mid=sec&oid=001&isYeonhapFlash=Y&aid=0014551085&date=20240308&page=1"
-//   );
-
-//   const breakingNewsList = await page.$$(".type02 li a strong");
-//   const breakingNewsArr = [];
-//   breakingNewsList.forEach((newsEl) =>
-//     breakingNewsArr.push(newsEl.textContent)
-//   );
-
-//   fs.writeFileSync("breakingNews.json", breakingNewsArr);
-
-//   browser.close();
-// }
-
-// crawlBreakingNews();
+main();
