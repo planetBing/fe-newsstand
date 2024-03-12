@@ -1,4 +1,4 @@
-const breakingNews = [
+export const breakingNews = [
   {
     href: "https://n.news.naver.com/mnews/article/001/0014555121?rc=N&amp;ntype=RANKING",
     title: `의대교육 '파행'…전국 40곳 중 수업거부 10곳, 나머진 개강안해`,
@@ -40,5 +40,3 @@ const breakingNews = [
     title: `"尹 지지율 40.2%…국민의힘 41.9%, 민주당 43.1%"[리얼미터]`,
   },
 ];
-
-console.log(breakingNews.length);
