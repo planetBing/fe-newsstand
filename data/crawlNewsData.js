@@ -2,56 +2,58 @@ const puppeteer = require("puppeteer");
 const cheerio = require("cheerio");
 
 const naverURL = "https://www.naver.com";
+const gridBtn = ".ContentPagingView-module__btn_view_list___j7eNR";
+const brandMark = ".MediaNewsView-module__news_top___KTy0M a img";
+const mainImgCl = ".MediaNewsView-module__desc_left___jU94v a span img";
+const mainACl =
+  ".MediaNewsView-module__desc_left___jU94v .MediaNewsView-module__desc_title___IObEv";
 
 async function crawling() {
   const browser = await puppeteer.launch({ headless: false });
   const page = await browser.newPage();
   await page.goto(naverURL);
 
-  //그리드 보기
-  await page.click(".ContentPagingView-module__btn_view_list___j7eNR");
-  const pressList = [];
+  await page.click(gridBtn);
 
+  const pressObj = await getPressInfo(page, brandMark);
+
+  const mainNewsObj = await getMainNewsInfo(page, mainImgCl, mainACl);
+
+  console.log({ pressObj, mainNewsObj });
+
+  browser.close();
+}
+
+async function getPressInfo(page, selector) {
   const pressObj = {};
-  const brandMarks = await page.$$(
-    ".MediaNewsView-module__news_top___KTy0M a img"
-  );
+  const brandMarks = await page.$$(selector);
   for (const bm of brandMarks) {
-    const imgSrc = await page.evaluate((el) => el.getAttribute("src"), bm);
-    const alt = await page.evaluate((el) => el.getAttribute("alt"), bm);
+    const imgSrc = await bm.evaluate((el) => el.getAttribute("src"));
+    const alt = await bm.evaluate((el) => el.getAttribute("alt"));
     pressObj["pressName"] = alt;
     pressObj["brandMark"] = imgSrc;
   }
+  return pressObj;
+}
 
+async function getMainNewsInfo(page, imgSelector, aSelector) {
   const mainNewsObj = {};
-  await page.waitForSelector(
-    ".MediaNewsView-module__desc_left___jU94v a span img"
-  );
-  const mainImg = await page.$$(
-    ".MediaNewsView-module__desc_left___jU94v a span img"
-  );
+  await page.waitForSelector(imgSelector);
+  const mainImg = await page.$$(imgSelector);
   for (const img of mainImg) {
-    const thumb = await page.evaluate((el) => el.getAttribute("src"), img);
-    const title = await page.evaluate((el) => el.getAttribute("alt"), img);
+    const thumb = await img.evaluate((el) => el.getAttribute("src"));
+    const title = await img.evaluate((el) => el.getAttribute("alt"));
     mainNewsObj["thumbImg"] = thumb;
     mainNewsObj["title"] = title;
   }
 
-  await page.waitForSelector(
-    ".MediaNewsView-module__desc_left___jU94v .MediaNewsView-module__desc_title___IObEv"
-  );
-  const mainNewsLink = await page.$$(
-    ".MediaNewsView-module__desc_left___jU94v .MediaNewsView-module__desc_title___IObEv"
-  );
-  for (link of mainNewsLink) {
-    const href = await page.evaluate((el) => el.getAttribute("href"), link);
+  await page.waitForSelector(aSelector);
+  const mainNewsLink = await page.$$(aSelector);
+  for (const link of mainNewsLink) {
+    const href = await link.evaluate((el) => el.getAttribute("href"));
     mainNewsObj["link"] = href;
   }
-  pressObj["mainNews"] = mainNewsObj;
-
-  console.log(pressObj);
-
-  browser.close();
+  return mainNewsObj;
 }
 
 crawling();
