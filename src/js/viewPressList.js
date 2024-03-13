@@ -11,9 +11,3 @@ export function switchToListByViewer() {
     gridWrap.classList.add("display-none");
   });
 }
-
-// function viewPressList() {
-//   const mainEl = document.querySelector("main");
-//   mainEl.classList.remove("press-grid", "center-alignment");
-//   mainEl.classList.add("press-list");
-// }
