@@ -4,7 +4,7 @@ const LAST_PAGE = 3;
 const FIRST_PAGE = 0;
 
 const logoSrcArr = await getLogoImgSrc();
-const pressGridEl = document.querySelector(".press-grid");
+const pressGridEl = document.querySelector(".press-grid-wrap");
 const nextButton = document.querySelector(".right-button");
 const prevButton = document.querySelector(".left-button");
 const pageData = { currentPage, itemsPerPage };
@@ -20,13 +20,14 @@ export async function initPressGridView() {
 export function switchToGridByViewer() {
   const girdViewer = document.querySelector(".viewer-grid");
   const listViewer = document.querySelector(".viewer-list");
-  const mainEl = document.querySelector("main");
+  const listWrap = document.querySelector(".press-list-wrap");
+  const gridWrap = document.querySelector(".press-grid-wrap");
 
   girdViewer.addEventListener("click", (event) => {
-    initPressGridView();
     girdViewer.classList.add("on");
     listViewer.classList.remove("on");
-    mainEl.classList.add("press-grid", "center-alignment");
+    listWrap.classList.add("display-none");
+    gridWrap.classList.remove("display-none");
   });
 }
 
