@@ -115,22 +115,26 @@ function convertCategoryByLastPage() {
       (item) => item.category === currentCategory
     );
     const nextPressIndex =
-      currentPressIndex + 1 >= pressData.length ? 0 : currentPressIndex + 1;
+      currentPressIndex + 1 >= pressData.length
+        ? START_INDEX
+        : currentPressIndex + 1;
     const nextPressObj = pressData[nextPressIndex];
     currentCategory = nextPressObj.category;
-    currentPage = 0;
+    currentPage = START_INDEX;
     totalPage = nextPressObj.pressList.length - 1;
     console.log(currentCategory);
   }
 }
 
 function convertCategoryByFirstPage() {
-  if (currentPage < 0) {
+  if (currentPage < START_INDEX) {
     const currentPressIndex = pressData.findIndex(
       (item) => item.category === currentCategory
     );
     const prevPressIndex =
-      currentPressIndex - 1 < 0 ? pressData.length - 1 : currentPressIndex - 1;
+      currentPressIndex - 1 < START_INDEX
+        ? pressData.length - 1
+        : currentPressIndex - 1;
     const prevPressObj = pressData[prevPressIndex];
     currentCategory = prevPressObj.category;
     currentPage = prevPressObj.pressList.length - 1;
@@ -146,7 +150,7 @@ const gotoCategory = (event) => {
       (item) => item.category === clickedCategoryText
     );
     currentCategory = clickedCategoryText;
-    currentPage = 0;
+    currentPage = START_INDEX;
     totalPage = selectedCategoryObj.pressList.length - 1;
     displayListPage(currentCategory, currentPage);
   }
