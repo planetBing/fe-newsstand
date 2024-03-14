@@ -9,8 +9,9 @@ import {
 } from "../../data/pressList.js";
 
 let currentPage = 0;
-let totalPage = 10;
-let currentCategory = "종합/경제";
+let totalPage = 0;
+let currentCategory = "";
+const START_INDEX = 0;
 
 const pressData = [
   { category: "종합/경제", is: economy },
@@ -53,10 +54,17 @@ export function initPressListView() {
   //페이지 넘기기 버튼
   //카테고리 버튼
   //20초마다 페이지 넘기기
-  displayListPage(currentCategory, currentPage);
+  initializeListView();
+
   nextButton.addEventListener("click", gotoNextListPage);
   prevButton.addEventListener("click", gotoPrevListPage);
   categoryNav.addEventListener("click", gotoCategory);
+}
+
+function initializeListView() {
+  currentCategory = pressData[START_INDEX].category;
+  totalPage = pressData[START_INDEX].is.length - 1;
+  displayListPage(currentCategory, currentPage);
 }
 
 function displayListPage(currentCategory, index) {
