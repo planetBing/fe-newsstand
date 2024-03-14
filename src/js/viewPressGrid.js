@@ -12,22 +12,23 @@ const pageData = { currentPage, itemsPerPage };
 export async function initPressGridView() {
   viewPressLogo(pageData, logoSrcArr, pressGridEl);
 
-  nextButton.addEventListener("click", gotoNextPage);
+  nextButton.addEventListener("click", gotoNextGridPage);
 
-  prevButton.addEventListener("click", gotoPrevPage);
+  prevButton.addEventListener("click", gotoPrevGridPage);
 }
 
 export function switchToGridByViewer() {
   const girdViewer = document.querySelector(".viewer-grid");
   const listViewer = document.querySelector(".viewer-list");
   const listWrap = document.querySelector(".press-list-wrap");
-  const gridWrap = document.querySelector(".press-grid-wrap");
 
   girdViewer.addEventListener("click", (event) => {
     girdViewer.classList.add("on");
     listViewer.classList.remove("on");
     listWrap.classList.add("display-none");
-    gridWrap.classList.remove("display-none");
+    pressGridEl.classList.remove("display-none");
+
+    renderBtnByGridPage();
   });
 }
 
@@ -62,25 +63,26 @@ const addPressLogoAndBox = (src) => {
   newPressBox.appendChild(newsLogo);
   newPressBox.appendChild(subsBtn);
   pressGridEl.appendChild(newPressBox);
+
+  renderBtnByGridPage();
 };
 
-const gotoNextPage = (event) => {
-  event.preventDefault();
-  pageData.currentPage++;
-  clearPressGrid();
-  viewPressLogo(pageData, logoSrcArr, pressGridEl);
-  if (pageData.currentPage === LAST_PAGE) nextButton.classList.add("hidden");
-  if (pageData.currentPage !== FIRST_PAGE)
-    prevButton.classList.remove("hidden");
+const gotoNextGridPage = (event) => {
+  if (!pressGridEl.classList.contains("display-none")) {
+    pageData.currentPage++;
+    console.log(`그리드 페이지 ${pageData.currentPage}`);
+    clearPressGrid();
+    viewPressLogo(pageData, logoSrcArr, pressGridEl);
+  }
 };
 
-const gotoPrevPage = (event) => {
-  event.preventDefault();
-  pageData.currentPage--;
-  clearPressGrid();
-  viewPressLogo(pageData, logoSrcArr, pressGridEl);
-  if (pageData.currentPage !== LAST_PAGE) nextButton.classList.remove("hidden");
-  if (pageData.currentPage === FIRST_PAGE) prevButton.classList.add("hidden");
+const gotoPrevGridPage = (event) => {
+  if (!pressGridEl.classList.contains("display-none")) {
+    pageData.currentPage--;
+    console.log(`그리드 페이지 ${pageData.currentPage}`);
+    clearPressGrid();
+    viewPressLogo(pageData, logoSrcArr, pressGridEl);
+  }
 };
 
 function clearPressGrid() {
@@ -88,4 +90,12 @@ function clearPressGrid() {
   for (const pressBox of pressBoxes) {
     pressBox.remove();
   }
+}
+
+function renderBtnByGridPage() {
+  if (pageData.currentPage === LAST_PAGE) nextButton.classList.add("hidden");
+  if (pageData.currentPage !== FIRST_PAGE)
+    prevButton.classList.remove("hidden");
+  if (pageData.currentPage !== LAST_PAGE) nextButton.classList.remove("hidden");
+  if (pageData.currentPage === FIRST_PAGE) prevButton.classList.add("hidden");
 }
