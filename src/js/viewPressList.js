@@ -1,27 +1,14 @@
+import { pressData } from "../../data/categoryDictionary.js";
 import {
-  economy,
-  broadCast,
-  it,
-  english,
-  sports,
-  magazine,
-  local,
-} from "../../data/pressList.js";
+  makePressInfoHtml,
+  makeMainNewsHtml,
+  makeNewsListHtml,
+} from "./htmlGenerators.js";
 
 let currentPage = 0;
 let totalPage = 0;
 let currentCategory = "";
 const START_INDEX = 0;
-
-const pressData = [
-  { category: "종합/경제", pressList: economy },
-  { category: "방송/통신", pressList: broadCast },
-  { category: "IT", pressList: it },
-  { category: "영자지", pressList: english },
-  { category: "스포츠/연예", pressList: sports },
-  { category: "매거진/전문지", pressList: magazine },
-  { category: "지역", pressList: local },
-];
 
 const mainEl = document.querySelector("main");
 const listWrap = mainEl.querySelector(".press-list-wrap");
@@ -48,12 +35,6 @@ export function switchToListByViewer() {
 }
 
 export function initPressListView() {
-  //일단 어떤 카테고리의 데이터를 가져올지 결정해야...
-  // 카테고리가 결정되는 방법에는 1. 페이지 끝까지 도달한 경우 2. 카테고리 버튼을 클릭한 경우
-  //초기 화면 그리기
-  //페이지 넘기기 버튼
-  //카테고리 버튼
-  //20초마다 페이지 넘기기
   initializeListView();
 
   nextButton.addEventListener("click", gotoNextListPage);
@@ -81,33 +62,6 @@ function displayListPage(currentCategory, index) {
   mainNewsBox.innerHTML = mainNewsHtml;
   newsListBox.innerHTML = newsListHtml;
   applyStyleToSelectedCategory();
-}
-
-function makePressInfoHtml(eachPressObj) {
-  const html = `<span><img src="${eachPressObj.brandMark}"></span>
-  <span class="edit-date">${eachPressObj.editDate}</span>
-  <button class="subs-btn">+ 구독하기</button>`;
-  return html;
-}
-
-function makeMainNewsHtml(eachPressObj) {
-  const mainNewsData = eachPressObj.mainNews;
-  const html = `<div class="news-list-left">
-  <a href="${mainNewsData.link}"><img src="${mainNewsData.thumb}" alt="thumb"></a>
-  <a href="${mainNewsData.link}">${mainNewsData.title}</a>
-  </div>`;
-  return html;
-}
-
-function makeNewsListHtml(eachPressObj) {
-  const newsListDataArr = eachPressObj.newsList;
-
-  let html = "";
-  newsListDataArr.forEach((eachNews) => {
-    html += `<li><a href="${eachNews.link}">${eachNews.title}</a></li>`;
-  });
-  html += `<div>${eachPressObj.pressName}에서 직접 편집한 뉴스입니다.</div>`;
-  return html;
 }
 
 function applyStyleToSelectedCategory() {
@@ -187,7 +141,13 @@ function convertCategoryByFirstPage() {
 
 const gotoCategory = (event) => {
   if (event.target.classList.contains("category-text")) {
-    const categoryText = event.target.textContent;
-    console.log(`Clicked on category: ${categoryText}`);
+    const clickedCategoryText = event.target.textContent;
+    const selectedCategoryObj = pressData.find(
+      (item) => item.category === clickedCategoryText
+    );
+    currentCategory = clickedCategoryText;
+    currentPage = 0;
+    totalPage = selectedCategoryObj.pressList.length - 1;
+    displayListPage(currentCategory, currentPage);
   }
 };
