@@ -9,12 +9,27 @@ import {
 } from "../../data/pressList.js";
 
 let currentPage = 0;
-let totalPage = 81;
+let totalPage = 10;
+let currentCategory = "종합/경제";
 
-const listWrap = document.querySelector(".press-list-wrap");
-const pressInfoBox = document.querySelector(".press-info");
-const nextButton = document.querySelector(".right-button");
-const prevButton = document.querySelector(".left-button");
+const pressData = [
+  { category: "종합/경제", is: economy },
+  { category: "방송/통신", is: broadCast },
+  { category: "IT", is: it },
+  { category: "영자지", is: english },
+  { category: "스포츠/연예", is: sports },
+  { category: "매거진/전문지", is: magazine },
+  { category: "지역", is: local },
+];
+
+const mainEl = document.querySelector("main");
+const listWrap = mainEl.querySelector(".press-list-wrap");
+const categoryNav = mainEl.querySelector(".category");
+const pressInfoBox = mainEl.querySelector(".press-info");
+const mainNewsBox = mainEl.querySelector(".news-list-left");
+const newsListBox = mainEl.querySelector(".news-list-right ul");
+const nextButton = mainEl.querySelector(".right-button");
+const prevButton = mainEl.querySelector(".left-button");
 
 export function switchToListByViewer() {
   const listViewer = document.querySelector(".viewer-list");
@@ -22,10 +37,10 @@ export function switchToListByViewer() {
   const gridWrap = document.querySelector(".press-grid-wrap");
 
   listViewer.addEventListener("click", (event) => {
-    listViewer.classList.add("on");
-    girdViewer.classList.remove("on");
-    listWrap.classList.remove("display-none");
-    gridWrap.classList.add("display-none");
+    listViewer.classList.toggle("on");
+    girdViewer.classList.toggle("on");
+    listWrap.classList.toggle("display-none");
+    gridWrap.classList.toggle("display-none");
     nextButton.classList.remove("hidden");
     prevButton.classList.remove("hidden");
   });
@@ -38,24 +53,59 @@ export function initPressListView() {
   //페이지 넘기기 버튼
   //카테고리 버튼
   //20초마다 페이지 넘기기
-  displayListPage(currentPage);
+  displayListPage(currentCategory, currentPage);
   nextButton.addEventListener("click", gotoNextListPage);
   prevButton.addEventListener("click", gotoPrevListPage);
+  categoryNav.addEventListener("click", gotoCategory);
 }
 
-function displayListPage(index) {
-  const pressObj = category[index];
-  const pressInfoHtml = `<span><img src="${pressObj.brandMark}"></span>
-  <span class="edit-date">${pressObj.editDate}</span>
-  <button class="subs-btn">+ 구독하기</button>`;
+function displayListPage(currentCategory, index) {
+  const currentPressDic = pressData.find(
+    (item) => item.category === currentCategory
+  );
+  const currentPressData = currentPressDic.is;
+  const eachPressObj = currentPressData[index];
+
+  const pressInfoHtml = makePressInfoHtml(eachPressObj);
+  const mainNewsHtml = makeMainNewsHtml(eachPressObj);
+  const newsListHtml = makeNewsListHtml(eachPressObj);
   pressInfoBox.innerHTML = pressInfoHtml;
+  mainNewsBox.innerHTML = mainNewsHtml;
+  newsListBox.innerHTML = newsListHtml;
+}
+
+function makePressInfoHtml(eachPressObj) {
+  const html = `<span><img src="${eachPressObj.brandMark}"></span>
+  <span class="edit-date">${eachPressObj.editDate}</span>
+  <button class="subs-btn">+ 구독하기</button>`;
+  return html;
+}
+
+function makeMainNewsHtml(eachPressObj) {
+  const mainNewsData = eachPressObj.mainNews;
+  const html = `<div class="news-list-left">
+  <a href="${mainNewsData.link}"><img src="${mainNewsData.thumb}" alt="thumb"></a>
+  <a href="${mainNewsData.link}">${mainNewsData.title}</a>
+  </div>`;
+  return html;
+}
+
+function makeNewsListHtml(eachPressObj) {
+  const newsListDataArr = eachPressObj.newsList;
+
+  let html = "";
+  newsListDataArr.forEach((eachNews) => {
+    html += `<li><a href="${eachNews.link}">${eachNews.title}</a></li>`;
+  });
+  html += `<div>${eachPressObj.pressName}에서 직접 편집한 뉴스입니다.</div>`;
+  return html;
 }
 
 const gotoNextListPage = () => {
   if (!listWrap.classList.contains("display-none")) {
     currentPage++;
     console.log(`리스트 페이지 ${currentPage}`);
-    displayListPage(currentPage);
+    displayListPage(currentCategory, currentPage);
   }
 };
 
@@ -63,6 +113,13 @@ const gotoPrevListPage = () => {
   if (!listWrap.classList.contains("display-none")) {
     currentPage--;
     console.log(`리스트 페이지 ${currentPage}`);
-    displayListPage(currentPage);
+    displayListPage(currentCategory, currentPage);
+  }
+};
+
+const gotoCategory = (event) => {
+  if (event.target.classList.contains("category-text")) {
+    const categoryText = event.target.textContent;
+    console.log(`Clicked on category: ${categoryText}`);
   }
 };

@@ -74,6 +74,11 @@ div.display-none {
   margin-right: 1rem;
 }
 
+.press-info img {
+  width: 53px;
+  height: 20px;
+}
+
 .edit-date {
   font-weight: 500;
   font-size: 12px;
@@ -106,4 +111,41 @@ div.display-none {
 
 .news-list-right {
   width: 530px;
+}
+
+.news-list-left img {
+  width: 320px;
+  height: 200px;
+}
+
+.news-list-left a {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 22px;
+  color: rgba(20, 33, 43, 1);
+  text-decoration: none;
+}
+
+.news-list-right ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.news-list-right li {
+  margin-bottom: 10px;
+}
+
+.news-list-right a {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 22px;
+  color: rgba(75, 89, 102, 1);
+  text-decoration: none;
+}
+
+.news-list-right div {
+  font-weight: 500;
+  font-size: 14px;
+  color: rgba(135, 146, 152, 1);
 }

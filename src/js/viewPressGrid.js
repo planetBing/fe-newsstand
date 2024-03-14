@@ -4,13 +4,13 @@ const LAST_PAGE = 3;
 const FIRST_PAGE = 0;
 
 const logoSrcArr = await getLogoImgSrc();
-const pressGridEl = document.querySelector(".press-grid-wrap");
+const gridWrap = document.querySelector(".press-grid-wrap");
 const nextButton = document.querySelector(".right-button");
 const prevButton = document.querySelector(".left-button");
 const pageData = { currentPage, itemsPerPage };
 
 export async function initPressGridView() {
-  viewPressLogo(pageData, logoSrcArr, pressGridEl);
+  viewPressLogo(pageData, logoSrcArr, gridWrap);
 
   nextButton.addEventListener("click", gotoNextGridPage);
 
@@ -23,10 +23,10 @@ export function switchToGridByViewer() {
   const listWrap = document.querySelector(".press-list-wrap");
 
   girdViewer.addEventListener("click", (event) => {
-    girdViewer.classList.add("on");
-    listViewer.classList.remove("on");
-    listWrap.classList.add("display-none");
-    pressGridEl.classList.remove("display-none");
+    girdViewer.classList.toggle("on");
+    listViewer.classList.toggle("on");
+    listWrap.classList.toggle("display-none");
+    gridWrap.classList.toggle("display-none");
 
     renderBtnByGridPage();
   });
@@ -62,26 +62,26 @@ const addPressLogoAndBox = (src) => {
   subsBtn.classList.add("subs", "pointer");
   newPressBox.appendChild(newsLogo);
   newPressBox.appendChild(subsBtn);
-  pressGridEl.appendChild(newPressBox);
+  gridWrap.appendChild(newPressBox);
 
   renderBtnByGridPage();
 };
 
 const gotoNextGridPage = (event) => {
-  if (!pressGridEl.classList.contains("display-none")) {
+  if (!gridWrap.classList.contains("display-none")) {
     pageData.currentPage++;
     console.log(`그리드 페이지 ${pageData.currentPage}`);
     clearPressGrid();
-    viewPressLogo(pageData, logoSrcArr, pressGridEl);
+    viewPressLogo(pageData, logoSrcArr, gridWrap);
   }
 };
 
 const gotoPrevGridPage = (event) => {
-  if (!pressGridEl.classList.contains("display-none")) {
+  if (!gridWrap.classList.contains("display-none")) {
     pageData.currentPage--;
     console.log(`그리드 페이지 ${pageData.currentPage}`);
     clearPressGrid();
-    viewPressLogo(pageData, logoSrcArr, pressGridEl);
+    viewPressLogo(pageData, logoSrcArr, gridWrap);
   }
 };
 
