@@ -80,6 +80,7 @@ function displayListPage(currentCategory, index) {
   pressInfoBox.innerHTML = pressInfoHtml;
   mainNewsBox.innerHTML = mainNewsHtml;
   newsListBox.innerHTML = newsListHtml;
+  applyStyleToSelectedCategory();
 }
 
 function makePressInfoHtml(eachPressObj) {
@@ -107,6 +108,33 @@ function makeNewsListHtml(eachPressObj) {
   });
   html += `<div>${eachPressObj.pressName}에서 직접 편집한 뉴스입니다.</div>`;
   return html;
+}
+
+function applyStyleToSelectedCategory() {
+  const categoryLists = categoryNav.querySelectorAll(".category-list");
+  categoryLists.forEach((category) => {
+    const categoryText = category.querySelector(".category-text");
+    if (categoryText.textContent === currentCategory) {
+      category.classList.add("selected");
+      removePressCountSpan(category);
+      addPressCountSpan(category);
+    } else {
+      category.classList.remove("selected");
+      removePressCountSpan(category);
+    }
+  });
+}
+
+function addPressCountSpan(category) {
+  const spanEl = document.createElement("span");
+  spanEl.classList.add("press-count");
+  spanEl.innerText = `${currentPage + 1}/${totalPage + 1}`;
+  category.appendChild(spanEl);
+}
+
+function removePressCountSpan(category) {
+  const pressCountSpan = category.querySelector(".press-count");
+  if (pressCountSpan) category.removeChild(pressCountSpan);
 }
 
 const gotoNextListPage = () => {
