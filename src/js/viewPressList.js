@@ -14,13 +14,13 @@ let currentCategory = "";
 const START_INDEX = 0;
 
 const pressData = [
-  { category: "종합/경제", is: economy },
-  { category: "방송/통신", is: broadCast },
-  { category: "IT", is: it },
-  { category: "영자지", is: english },
-  { category: "스포츠/연예", is: sports },
-  { category: "매거진/전문지", is: magazine },
-  { category: "지역", is: local },
+  { category: "종합/경제", pressList: economy },
+  { category: "방송/통신", pressList: broadCast },
+  { category: "IT", pressList: it },
+  { category: "영자지", pressList: english },
+  { category: "스포츠/연예", pressList: sports },
+  { category: "매거진/전문지", pressList: magazine },
+  { category: "지역", pressList: local },
 ];
 
 const mainEl = document.querySelector("main");
@@ -63,7 +63,7 @@ export function initPressListView() {
 
 function initializeListView() {
   currentCategory = pressData[START_INDEX].category;
-  totalPage = pressData[START_INDEX].is.length - 1;
+  totalPage = pressData[START_INDEX].pressList.length - 1;
   displayListPage(currentCategory, currentPage);
 }
 
@@ -71,7 +71,7 @@ function displayListPage(currentCategory, index) {
   const currentPressDic = pressData.find(
     (item) => item.category === currentCategory
   );
-  const currentPressData = currentPressDic.is;
+  const currentPressData = currentPressDic.pressList;
   const eachPressObj = currentPressData[index];
 
   const pressInfoHtml = makePressInfoHtml(eachPressObj);
@@ -112,6 +112,7 @@ function makeNewsListHtml(eachPressObj) {
 const gotoNextListPage = () => {
   if (!listWrap.classList.contains("display-none")) {
     currentPage++;
+    convertCategoryByLastPage();
     console.log(`리스트 페이지 ${currentPage}`);
     displayListPage(currentCategory, currentPage);
   }
@@ -120,10 +121,41 @@ const gotoNextListPage = () => {
 const gotoPrevListPage = () => {
   if (!listWrap.classList.contains("display-none")) {
     currentPage--;
+    convertCategoryByFirstPage();
     console.log(`리스트 페이지 ${currentPage}`);
     displayListPage(currentCategory, currentPage);
   }
 };
+
+function convertCategoryByLastPage() {
+  if (currentPage > totalPage) {
+    const currentPressIndex = pressData.findIndex(
+      (item) => item.category === currentCategory
+    );
+    const nextPressIndex =
+      currentPressIndex + 1 >= pressData.length ? 0 : currentPressIndex + 1;
+    const nextPressObj = pressData[nextPressIndex];
+    currentCategory = nextPressObj.category;
+    currentPage = 0;
+    totalPage = nextPressObj.pressList.length - 1;
+    console.log(currentCategory);
+  }
+}
+
+function convertCategoryByFirstPage() {
+  if (currentPage < 0) {
+    const currentPressIndex = pressData.findIndex(
+      (item) => item.category === currentCategory
+    );
+    const prevPressIndex =
+      currentPressIndex - 1 < 0 ? pressData.length - 1 : currentPressIndex - 1;
+    const prevPressObj = pressData[prevPressIndex];
+    currentCategory = prevPressObj.category;
+    currentPage = prevPressObj.pressList.length - 1;
+    totalPage = prevPressObj.pressList.length - 1;
+    console.log(currentCategory);
+  }
+}
 
 const gotoCategory = (event) => {
   if (event.target.classList.contains("category-text")) {
