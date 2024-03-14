@@ -149,3 +149,7 @@ div.display-none {
   font-size: 14px;
   color: rgba(135, 146, 152, 1);
 }
+
+.news-list a:hover {
+  text-decoration: underline;
+}
