@@ -5,11 +5,12 @@ import {
   makeNewsListHtml,
 } from "./htmlGenerators.js";
 
-let currentPage = 0;
+let currentPage = 1;
 let totalPage = 0;
 let currentCategory = "";
 let timer;
 const START_INDEX = 0;
+const START_PAGE_NUM = 1;
 const TIME_TO_TURN_PAGE = 20000;
 
 const mainEl = document.querySelector("main");
@@ -51,16 +52,16 @@ export function initPressListView() {
 
 function initializeListView() {
   currentCategory = pressData[START_INDEX].category;
-  totalPage = pressData[START_INDEX].pressList.length - 1;
+  totalPage = pressData[START_INDEX].pressList.length;
   displayListCurrentPage(currentCategory, currentPage);
 }
 
-function displayListCurrentPage(currentCategory, index) {
+function displayListCurrentPage(currentCategory, currentPage) {
   const currentPressData = pressData.find(
     (item) => item.category === currentCategory
   );
   const currentPressList = currentPressData.pressList;
-  const currentPressObj = currentPressList[index];
+  const currentPressObj = currentPressList[currentPage - 1];
 
   const pressInfoHtml = makePressInfoHtml(currentPressObj);
   const mainNewsHtml = makeMainNewsHtml(currentPressObj);
@@ -90,7 +91,7 @@ function addPressCountSpan(category) {
   const spanEl = document.createElement("span");
   const divEl = document.createElement("div");
   spanEl.classList.add("press-count");
-  spanEl.innerText = `${currentPage + 1}/${totalPage + 1}`;
+  spanEl.innerText = `${currentPage}/${totalPage}`;
   divEl.classList.add("progress");
   category.appendChild(spanEl);
   category.appendChild(divEl);
@@ -130,8 +131,8 @@ function convertCategoryByLastPage() {
         : currentPressIndex + 1;
     const nextPressObj = pressData[nextPressIndex];
     currentCategory = nextPressObj.category;
-    currentPage = START_INDEX;
-    totalPage = nextPressObj.pressList.length - 1;
+    currentPage = START_PAGE_NUM;
+    totalPage = nextPressObj.pressList.length;
   }
 }
 
@@ -146,8 +147,8 @@ function convertCategoryByFirstPage() {
         : currentPressIndex - 1;
     const prevPressObj = pressData[prevPressIndex];
     currentCategory = prevPressObj.category;
-    currentPage = prevPressObj.pressList.length - 1;
-    totalPage = prevPressObj.pressList.length - 1;
+    currentPage = prevPressObj.pressList.length;
+    totalPage = prevPressObj.pressList.length;
   }
 }
 
@@ -158,8 +159,8 @@ const gotoCategory = (event) => {
       (item) => item.category === clickedCategoryText
     );
     currentCategory = clickedCategoryText;
-    currentPage = START_INDEX;
-    totalPage = selectedCategoryObj.pressList.length - 1;
+    currentPage = START_PAGE_NUM;
+    totalPage = selectedCategoryObj.pressList.length;
     displayListCurrentPage(currentCategory, currentPage);
   }
 };
