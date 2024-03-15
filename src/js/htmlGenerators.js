@@ -7,10 +7,8 @@ export function makePressInfoHtml(eachPressObj) {
 
 export function makeMainNewsHtml(eachPressObj) {
   const mainNewsData = eachPressObj.mainNews;
-  const html = `<div class="news-list-left">
-    <a href="${mainNewsData.link}"><img src="${mainNewsData.thumb}" alt="thumb"></a>
-    <a href="${mainNewsData.link}">${mainNewsData.title}</a>
-    </div>`;
+  const html = `<div><a href="${mainNewsData.link}"><img src="${mainNewsData.thumb}" alt="thumb"></a></div>
+    <a href="${mainNewsData.link}">${mainNewsData.title}</a>`;
   return html;
 }
 

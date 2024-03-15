@@ -136,9 +136,15 @@ div.display-none {
   width: 530px;
 }
 
+.news-list-left div {
+  width: 320px;
+  height: 200px;
+}
+
 .news-list-left img {
   width: 320px;
   height: 200px;
+  object-fit: cover;
 }
 
 .news-list-left a {
