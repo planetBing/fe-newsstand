@@ -78,26 +78,25 @@ function applyStyleToSelectedCategory() {
     const categoryText = category.querySelector(".category-text");
     if (categoryText.textContent === currentCategory) {
       category.classList.add("selected");
-      removePressCountSpan(category);
-      addPressCountSpan(category);
+      removePressCountAndProgress(category);
+      addPressCountAndProgress(category);
     } else {
       category.classList.remove("selected");
-      removePressCountSpan(category);
+      removePressCountAndProgress(category);
     }
   });
 }
 
-function addPressCountSpan(category) {
+function addPressCountAndProgress(category) {
   const spanEl = document.createElement("span");
   const divEl = document.createElement("div");
   spanEl.classList.add("press-count");
   spanEl.innerText = `${currentPage}/${totalPage}`;
   divEl.classList.add("progress");
-  category.appendChild(spanEl);
-  category.appendChild(divEl);
+  category.append(spanEl, divEl);
 }
 
-function removePressCountSpan(category) {
+function removePressCountAndProgress(category) {
   const pressCountSpan = category.querySelector(".press-count");
   const progressDiv = category.querySelector(".progress");
   if (pressCountSpan) category.removeChild(pressCountSpan);

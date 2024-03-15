@@ -1,3 +1,8 @@
+.center {
+  display: flex;
+  align-items: center;
+}
+
 div.display-none {
   display: none;
 }
@@ -19,10 +24,12 @@ div.display-none {
 
 .category {
   height: 40px;
-  display: flex;
-  align-items: center;
   border-bottom: 1px solid rgba(210, 218, 224, 1);
   background-color: rgba(245, 247, 249, 1);
+}
+
+.category-list {
+  height: 100%;
 }
 
 .category-list .category-text {
@@ -88,8 +95,6 @@ div.display-none {
 
 .press-info {
   height: 24px;
-  display: flex;
-  align-items: center;
   margin: 1rem;
 }
 
@@ -162,7 +167,7 @@ div.display-none {
 }
 
 .news-list-right li {
-  margin-bottom: 10px;
+  margin-bottom: 0.625rem;
 }
 
 .news-list-right a {

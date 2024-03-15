@@ -60,8 +60,7 @@ const addPressLogoAndBox = (src) => {
   newPressBox.classList.add("press-box");
   newsLogo.classList.add("press-logo");
   subsBtn.classList.add("subs", "pointer");
-  newPressBox.appendChild(newsLogo);
-  newPressBox.appendChild(subsBtn);
+  newPressBox.append(newsLogo, subsBtn);
   gridWrap.appendChild(newPressBox);
 
   renderBtnByGridPage();
