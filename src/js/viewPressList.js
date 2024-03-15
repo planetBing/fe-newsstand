@@ -8,7 +8,9 @@ import {
 let currentPage = 0;
 let totalPage = 0;
 let currentCategory = "";
+let timer;
 const START_INDEX = 0;
+const TIME_TO_TURN_PAGE = 20000;
 
 const mainEl = document.querySelector("main");
 const listWrap = mainEl.querySelector(".press-list-wrap");
@@ -37,23 +39,28 @@ export function switchToListByViewer() {
 export function initPressListView() {
   initializeListView();
 
-  nextButton.addEventListener("click", gotoNextListPage);
+  nextButton.addEventListener("click", () => {
+    gotoNextListPage();
+    resetTimer();
+  });
   prevButton.addEventListener("click", gotoPrevListPage);
   categoryNav.addEventListener("click", gotoCategory);
+
+  resetTimer();
 }
 
 function initializeListView() {
   currentCategory = pressData[START_INDEX].category;
   totalPage = pressData[START_INDEX].pressList.length - 1;
-  displayListPage(currentCategory, currentPage);
+  displayListCurrentPage(currentCategory, currentPage);
 }
 
-function displayListPage(currentCategory, index) {
-  const currentPressDic = pressData.find(
+function displayListCurrentPage(currentCategory, index) {
+  const currentPressData = pressData.find(
     (item) => item.category === currentCategory
   );
-  const currentPressData = currentPressDic.pressList;
-  const eachPressObj = currentPressData[index];
+  const currentPressList = currentPressData.pressList;
+  const eachPressObj = currentPressList[index];
 
   const pressInfoHtml = makePressInfoHtml(eachPressObj);
   const mainNewsHtml = makeMainNewsHtml(eachPressObj);
@@ -96,7 +103,7 @@ const gotoNextListPage = () => {
     currentPage++;
     convertCategoryByLastPage();
     console.log(`리스트 페이지 ${currentPage}`);
-    displayListPage(currentCategory, currentPage);
+    displayListCurrentPage(currentCategory, currentPage);
   }
 };
 
@@ -105,7 +112,7 @@ const gotoPrevListPage = () => {
     currentPage--;
     convertCategoryByFirstPage();
     console.log(`리스트 페이지 ${currentPage}`);
-    displayListPage(currentCategory, currentPage);
+    displayListCurrentPage(currentCategory, currentPage);
   }
 };
 
@@ -152,6 +159,16 @@ const gotoCategory = (event) => {
     currentCategory = clickedCategoryText;
     currentPage = START_INDEX;
     totalPage = selectedCategoryObj.pressList.length - 1;
-    displayListPage(currentCategory, currentPage);
+    displayListCurrentPage(currentCategory, currentPage);
   }
 };
+
+function resetTimer() {
+  if (timer) clearInterval(timer);
+  timer = setInterval(gotoNextPageAndSetTimer, TIME_TO_TURN_PAGE);
+}
+
+function gotoNextPageAndSetTimer() {
+  gotoNextListPage();
+  resetTimer();
+}
