@@ -136,7 +136,7 @@ function convertCategoryByLastPage() {
 }
 
 function convertCategoryByFirstPage() {
-  if (currentPage < TIME_TO_TURN_PAGE) {
+  if (currentPage < START_PAGE_NUM) {
     const currentPressIndex = pressData.findIndex(
       (item) => item.category === currentCategory
     );
