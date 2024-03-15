@@ -1,12 +1,10 @@
-import {
-  economy,
-  broadCast,
-  it,
-  english,
-  sports,
-  magazine,
-  local,
-} from "./pressList.js";
+import { economy } from "./pressList/economy.js";
+import { broadCast } from "./pressList/broadcast.js";
+import { it } from "./pressList/IT.js";
+import { english } from "./pressList/english.js";
+import { sports } from "./pressList/sports.js";
+import { magazine } from "./pressList/magazine.js";
+import { local } from "./pressList/local.js";
 
 export const pressData = [
   { category: "종합/경제", pressList: shufflePressList(economy) },
