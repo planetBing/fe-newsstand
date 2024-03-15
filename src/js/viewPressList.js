@@ -60,11 +60,11 @@ function displayListCurrentPage(currentCategory, index) {
     (item) => item.category === currentCategory
   );
   const currentPressList = currentPressData.pressList;
-  const eachPressObj = currentPressList[index];
+  const currentPressObj = currentPressList[index];
 
-  const pressInfoHtml = makePressInfoHtml(eachPressObj);
-  const mainNewsHtml = makeMainNewsHtml(eachPressObj);
-  const newsListHtml = makeNewsListHtml(eachPressObj);
+  const pressInfoHtml = makePressInfoHtml(currentPressObj);
+  const mainNewsHtml = makeMainNewsHtml(currentPressObj);
+  const newsListHtml = makeNewsListHtml(currentPressObj);
   pressInfoBox.innerHTML = pressInfoHtml;
   mainNewsBox.innerHTML = mainNewsHtml;
   newsListBox.innerHTML = newsListHtml;
@@ -88,21 +88,25 @@ function applyStyleToSelectedCategory() {
 
 function addPressCountSpan(category) {
   const spanEl = document.createElement("span");
+  const divEl = document.createElement("div");
   spanEl.classList.add("press-count");
   spanEl.innerText = `${currentPage + 1}/${totalPage + 1}`;
+  divEl.classList.add("progress");
   category.appendChild(spanEl);
+  category.appendChild(divEl);
 }
 
 function removePressCountSpan(category) {
   const pressCountSpan = category.querySelector(".press-count");
+  const progressDiv = category.querySelector(".progress");
   if (pressCountSpan) category.removeChild(pressCountSpan);
+  if (progressDiv) category.removeChild(progressDiv);
 }
 
 const gotoNextListPage = () => {
   if (!listWrap.classList.contains("display-none")) {
     currentPage++;
     convertCategoryByLastPage();
-    console.log(`리스트 페이지 ${currentPage}`);
     displayListCurrentPage(currentCategory, currentPage);
   }
 };
@@ -111,7 +115,6 @@ const gotoPrevListPage = () => {
   if (!listWrap.classList.contains("display-none")) {
     currentPage--;
     convertCategoryByFirstPage();
-    console.log(`리스트 페이지 ${currentPage}`);
     displayListCurrentPage(currentCategory, currentPage);
   }
 };
@@ -129,7 +132,6 @@ function convertCategoryByLastPage() {
     currentCategory = nextPressObj.category;
     currentPage = START_INDEX;
     totalPage = nextPressObj.pressList.length - 1;
-    console.log(currentCategory);
   }
 }
 
@@ -146,7 +148,6 @@ function convertCategoryByFirstPage() {
     currentCategory = prevPressObj.category;
     currentPage = prevPressObj.pressList.length - 1;
     totalPage = prevPressObj.pressList.length - 1;
-    console.log(currentCategory);
   }
 }
 

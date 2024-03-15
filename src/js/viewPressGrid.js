@@ -70,7 +70,6 @@ const addPressLogoAndBox = (src) => {
 const gotoNextGridPage = (event) => {
   if (!gridWrap.classList.contains("display-none")) {
     pageData.currentPage++;
-    console.log(`그리드 페이지 ${pageData.currentPage}`);
     clearPressGrid();
     viewPressLogo(pageData, logoSrcArr, gridWrap);
   }
@@ -79,7 +78,6 @@ const gotoNextGridPage = (event) => {
 const gotoPrevGridPage = (event) => {
   if (!gridWrap.classList.contains("display-none")) {
     pageData.currentPage--;
-    console.log(`그리드 페이지 ${pageData.currentPage}`);
     clearPressGrid();
     viewPressLogo(pageData, logoSrcArr, gridWrap);
   }
