@@ -3,14 +3,14 @@ const itemsPerPage = 24;
 const LAST_PAGE = 3;
 const FIRST_PAGE = 0;
 
-const logoSrcArr = await getLogoImgSrc();
+const pressArr = await getLogoImgSrc();
 const gridWrap = document.querySelector(".press-grid-wrap");
 const nextButton = document.querySelector(".right-button");
 const prevButton = document.querySelector(".left-button");
 const pageData = { currentPage, itemsPerPage };
 
 export async function initPressGridView() {
-  viewPressLogo(pageData, logoSrcArr, gridWrap);
+  viewPressLogo(pageData, pressArr, gridWrap);
 
   nextButton.addEventListener("click", gotoNextGridPage);
 
@@ -34,11 +34,11 @@ export function switchToGridByViewer() {
 
 async function getLogoImgSrc() {
   try {
-    const response = await fetch("./data/logoImg.json");
+    const response = await fetch("./data/gridPress.json");
     const imgData = await response.json();
-    const imgSrcArr = Object.values(imgData).map((obj) => obj.src);
-    const shuffledImgSrcArr = imgSrcArr.sort(() => Math.random() - 0.5);
-    return shuffledImgSrcArr;
+    // const imgSrcArr = Object.values(imgData).map((obj) => obj.src);
+    // const shuffledImgSrcArr = imgSrcArr.sort(() => Math.random() - 0.5);
+    return imgData;
   } catch (err) {
     console.error("JSON 파일을 가져오는 도중 에러 발생.", err);
   }
@@ -51,16 +51,14 @@ function viewPressLogo(pageData, logoSrcArr) {
   logoSrcArr.slice(startIndex, endIndex).forEach(addPressLogoAndBox);
 }
 
-const addPressLogoAndBox = (src) => {
+const addPressLogoAndBox = (obj) => {
   const newPressBox = document.createElement("div");
   const newsLogo = document.createElement("img");
-  const subsBtn = document.createElement("span");
-  newsLogo.src = src;
-  subsBtn.innerText = "+ 구독하기";
+  newsLogo.src = obj.brandMark;
+  newsLogo.alt = obj.pressName;
   newPressBox.classList.add("press-box");
   newsLogo.classList.add("press-logo");
-  subsBtn.classList.add("subs", "pointer");
-  newPressBox.append(newsLogo, subsBtn);
+  newPressBox.append(newsLogo);
   gridWrap.appendChild(newPressBox);
 
   renderBtnByGridPage();
@@ -70,7 +68,7 @@ const gotoNextGridPage = (event) => {
   if (!gridWrap.classList.contains("display-none")) {
     pageData.currentPage++;
     clearPressGrid();
-    viewPressLogo(pageData, logoSrcArr, gridWrap);
+    viewPressLogo(pageData, pressArr, gridWrap);
   }
 };
 
@@ -78,7 +76,7 @@ const gotoPrevGridPage = (event) => {
   if (!gridWrap.classList.contains("display-none")) {
     pageData.currentPage--;
     clearPressGrid();
-    viewPressLogo(pageData, logoSrcArr, gridWrap);
+    viewPressLogo(pageData, pressArr, gridWrap);
   }
 };
 
