@@ -44,7 +44,10 @@ export function initPressListView() {
     gotoNextListPage();
     resetTimer();
   });
-  prevButton.addEventListener("click", gotoPrevListPage);
+  prevButton.addEventListener("click", () => {
+    gotoPrevListPage();
+    resetTimer();
+  });
   categoryNav.addEventListener("click", gotoCategory);
 
   resetTimer();
@@ -160,6 +163,7 @@ const gotoCategory = (event) => {
     currentCategory = clickedCategoryText;
     currentPage = START_PAGE_NUM;
     totalPage = selectedCategoryObj.pressList.length;
+    resetTimer();
     displayListCurrentPage(currentCategory, currentPage);
   }
 };
