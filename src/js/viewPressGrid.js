@@ -36,9 +36,8 @@ async function getLogoImgSrc() {
   try {
     const response = await fetch("./data/gridPress.json");
     const imgData = await response.json();
-    // const imgSrcArr = Object.values(imgData).map((obj) => obj.src);
-    // const shuffledImgSrcArr = imgSrcArr.sort(() => Math.random() - 0.5);
-    return imgData;
+    const shuffledImgData = imgData.sort(() => Math.random() - 0.5);
+    return shuffledImgData;
   } catch (err) {
     console.error("JSON 파일을 가져오는 도중 에러 발생.", err);
   }
@@ -54,11 +53,14 @@ function viewPressLogo(pageData, logoSrcArr) {
 const addPressLogoAndBox = (obj) => {
   const newPressBox = document.createElement("div");
   const newsLogo = document.createElement("img");
+  const subsBtn = document.createElement("span");
   newsLogo.src = obj.brandMark;
   newsLogo.alt = obj.pressName;
+  subsBtn.innerText = "+ 구독하기";
   newPressBox.classList.add("press-box");
   newsLogo.classList.add("press-logo");
-  newPressBox.append(newsLogo);
+  subsBtn.classList.add("subs", "pointer");
+  newPressBox.append(newsLogo, subsBtn);
   gridWrap.appendChild(newPressBox);
 
   renderBtnByGridPage();
