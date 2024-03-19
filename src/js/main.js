@@ -3,7 +3,7 @@ import { viewHeader } from "./viewHeader.js";
 import { initAndRollNews } from "./viewRollingNews.js";
 // import { switchToListByViewer, initPressListView } from "./viewPressList.js";
 // import { subscribeGridPress } from "./gridSubscription.js";
-import { initViewer } from "./viewerComponents.js";
+import { initViewer, initSubsTap } from "./viewerAndTap.js";
 
 function main() {
   viewHeader();
@@ -15,6 +15,7 @@ function main() {
   // subscribeGridPress();
 
   initViewer();
+  initSubsTap();
 }
 
 main();

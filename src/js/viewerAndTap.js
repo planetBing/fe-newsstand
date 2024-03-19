@@ -2,6 +2,7 @@ import { Store } from "./store.js";
 
 const store = new Store();
 store.addObserver(renderViewer);
+store.addObserver(renderSubsTap);
 
 export function initViewer() {
   const viewerBox = document.querySelector(".viewer");
@@ -30,5 +31,34 @@ function renderViewer(state) {
   } else if (viewType === "list") {
     listViewer.classList.add("on");
     gridViewer.classList.remove("on");
+  }
+}
+
+export function initSubsTap() {
+  const subsTapBox = document.querySelector(".tap");
+
+  subsTapBox.addEventListener("click", function (event) {
+    if (event.target.classList.contains("tap-all")) {
+      store.setState({ subsType: "off" });
+      console.log(store.getState());
+    } else if (event.target.classList.contains("tap-subs")) {
+      store.setState({ subsType: "on" });
+      console.log(store.getState());
+    }
+  });
+
+  renderSubsTap(store.getState());
+}
+
+function renderSubsTap(state) {
+  const subsType = state.subsType;
+  const allTap = document.querySelector(".tap-all");
+  const subsTap = document.querySelector(".tap-subs");
+  if (subsType === "on") {
+    subsTap.classList.add("on");
+    allTap.classList.remove("on");
+  } else if (subsType === "off") {
+    allTap.classList.add("on");
+    subsTap.classList.remove("on");
   }
 }
