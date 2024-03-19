@@ -4,10 +4,11 @@ import { initAndRollNews } from "./viewRollingNews.js";
 // import { switchToListByViewer, initPressListView } from "./viewPressList.js";
 // import { subscribeGridPress } from "./gridSubscription.js";
 import { initViewer, initSubsTap } from "./viewerAndTap.js";
+import { initAllPressList } from "./pressWrap.js";
 
 function main() {
   viewHeader();
-  initPressGridView();
+  // initPressGridView();
   initAndRollNews();
   // switchToListByViewer();
   // switchToGridByViewer();
@@ -16,6 +17,7 @@ function main() {
 
   initViewer();
   initSubsTap();
+  initAllPressList();
 }
 
 main();

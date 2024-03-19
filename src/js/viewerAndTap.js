@@ -1,6 +1,5 @@
-import { Store } from "./store.js";
+import { store } from "./store.js";
 
-const store = new Store();
 store.addObserver(renderViewer);
 store.addObserver(renderSubsTap);
 

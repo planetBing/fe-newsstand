@@ -25,3 +25,5 @@ export class Store {
     return this.state;
   }
 }
+
+export const store = new Store();
