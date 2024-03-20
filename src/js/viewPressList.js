@@ -100,23 +100,27 @@ function removePressCountAndProgress(category) {
   if (progressDiv) category.removeChild(progressDiv);
 }
 
-const gotoNextListPage = () => {
+function gotoNextListPage() {
   const state = store.getState();
   if (state.viewType === "list" && state.subsType === "off") {
     currentPage++;
     convertCategoryByLastPage();
     displayListCurrentPage(currentCategory, currentPage);
+  } else {
+    return;
   }
-};
+}
 
-const gotoPrevListPage = () => {
+function gotoPrevListPage() {
   const state = store.getState();
   if (state.viewType === "list" && state.subsType === "off") {
     currentPage--;
     convertCategoryByFirstPage();
     displayListCurrentPage(currentCategory, currentPage);
+  } else {
+    return;
   }
-};
+}
 
 function convertCategoryByLastPage() {
   if (currentPage > totalPage) {
@@ -131,6 +135,8 @@ function convertCategoryByLastPage() {
     currentCategory = nextPressObj.category;
     currentPage = START_PAGE_NUM;
     totalPage = nextPressObj.pressList.length;
+  } else {
+    return;
   }
 }
 
@@ -147,10 +153,12 @@ function convertCategoryByFirstPage() {
     currentCategory = prevPressObj.category;
     currentPage = prevPressObj.pressList.length;
     totalPage = prevPressObj.pressList.length;
+  } else {
+    return;
   }
 }
 
-const gotoCategory = (event) => {
+function gotoCategory(event) {
   if (event.target.classList.contains("category-text")) {
     const clickedCategoryText = event.target.textContent;
     const selectedCategoryObj = pressData.find(
@@ -161,8 +169,10 @@ const gotoCategory = (event) => {
     totalPage = selectedCategoryObj.pressList.length;
     resetTimer();
     displayListCurrentPage(currentCategory, currentPage);
+  } else {
+    return;
   }
-};
+}
 
 function resetTimer() {
   if (timer) clearInterval(timer);

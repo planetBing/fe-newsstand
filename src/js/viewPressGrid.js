@@ -53,6 +53,8 @@ function gotoNextGridPage(event, pageData, pressArr, gridWrap) {
     pageData.currentPage++;
     clearPressGrid();
     viewPressLogo(pageData, pressArr, gridWrap);
+  } else {
+    return;
   }
 }
 
@@ -62,6 +64,8 @@ function gotoPrevGridPage(event, pageData, pressArr, gridWrap) {
     pageData.currentPage--;
     clearPressGrid();
     viewPressLogo(pageData, pressArr, gridWrap);
+  } else {
+    return;
   }
 }
 
