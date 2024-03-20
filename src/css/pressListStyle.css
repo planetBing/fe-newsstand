@@ -28,6 +28,7 @@ div.display-none {
 }
 
 .press-wrap.grid {
+  display: grid;
   grid-template-columns: repeat(6, 1fr);
   border-top: 1px solid rgba(210, 218, 224, 1);
   border-left: 1px solid rgba(210, 218, 224, 1);

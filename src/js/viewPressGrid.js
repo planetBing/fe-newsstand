@@ -1,38 +1,33 @@
-let currentPage = 0;
-const itemsPerPage = 24;
-const LAST_PAGE = 3;
-const FIRST_PAGE = 0;
+// let currentPage = 0;
+// const itemsPerPage = 24;
+// const LAST_PAGE = 3;
+// const FIRST_PAGE = 0;
 
-const pressArr = await getLogoImgSrc();
-const gridWrap = document.querySelector(".press-grid-wrap");
-const nextButton = document.querySelector(".right-button");
-const prevButton = document.querySelector(".left-button");
-const pageData = { currentPage, itemsPerPage };
+// const pressArr = await getLogoImgSrc();
+// const gridWrap = document.querySelector(".press-grid-wrap");
+// const nextButton = document.querySelector(".right-button");
+// const prevButton = document.querySelector(".left-button");
+// const pageData = { currentPage, itemsPerPage };
 
-export async function initPressGridView() {
+export function initAllPressGridView(pressArr) {
+  let currentPage = 0;
+  const itemsPerPage = 24;
+  const nextButton = document.querySelector(".right-button");
+  const prevButton = document.querySelector(".left-button");
+  const gridWrap = document.querySelector(".grid");
+  const pageData = { currentPage, itemsPerPage };
   viewPressLogo(pageData, pressArr, gridWrap);
 
-  nextButton.addEventListener("click", gotoNextGridPage);
+  nextButton.addEventListener("click", (event) =>
+    gotoNextGridPage(event, pageData, pressArr, gridWrap)
+  );
 
-  prevButton.addEventListener("click", gotoPrevGridPage);
+  prevButton.addEventListener("click", (event) =>
+    gotoPrevGridPage(event, pageData, pressArr, gridWrap)
+  );
 }
 
-export function switchToGridByViewer() {
-  const girdViewer = document.querySelector(".viewer-grid");
-  const listViewer = document.querySelector(".viewer-list");
-  const listWrap = document.querySelector(".press-list-wrap");
-
-  girdViewer.addEventListener("click", (event) => {
-    girdViewer.classList.toggle("on");
-    listViewer.classList.toggle("on");
-    listWrap.classList.toggle("display-none");
-    gridWrap.classList.toggle("display-none");
-
-    renderBtnByGridPage();
-  });
-}
-
-async function getLogoImgSrc() {
+export async function getLogoImgSrc() {
   try {
     const response = await fetch("./data/gridPress.json");
     const imgData = await response.json();
@@ -43,44 +38,42 @@ async function getLogoImgSrc() {
   }
 }
 
-function viewPressLogo(pageData, logoSrcArr) {
-  const startIndex = pageData.currentPage * itemsPerPage;
+function viewPressLogo(pageData, logoSrcArr, gridWrap) {
+  const startIndex = pageData.currentPage * pageData.itemsPerPage;
   const endIndex = startIndex + pageData.itemsPerPage;
 
-  logoSrcArr.slice(startIndex, endIndex).forEach(addPressLogoAndBox);
+  logoSrcArr.slice(startIndex, endIndex).forEach((obj) => {
+    const newPressBox = document.createElement("div");
+    const newsLogo = document.createElement("img");
+    const subsBtn = document.createElement("span");
+    newsLogo.src = obj.brandMark;
+    newsLogo.alt = obj.pressName;
+    subsBtn.innerText = "+ 구독하기";
+    newPressBox.classList.add("press-box");
+    newsLogo.classList.add("press-logo");
+    subsBtn.classList.add("subs", "pointer");
+    newPressBox.append(newsLogo, subsBtn);
+    gridWrap.appendChild(newPressBox);
+
+    // renderBtnByGridPage();
+  });
 }
 
-const addPressLogoAndBox = (obj) => {
-  const newPressBox = document.createElement("div");
-  const newsLogo = document.createElement("img");
-  const subsBtn = document.createElement("span");
-  newsLogo.src = obj.brandMark;
-  newsLogo.alt = obj.pressName;
-  subsBtn.innerText = "+ 구독하기";
-  newPressBox.classList.add("press-box");
-  newsLogo.classList.add("press-logo");
-  subsBtn.classList.add("subs", "pointer");
-  newPressBox.append(newsLogo, subsBtn);
-  gridWrap.appendChild(newPressBox);
-
-  renderBtnByGridPage();
-};
-
-const gotoNextGridPage = (event) => {
+function gotoNextGridPage(event, pageData, pressArr, gridWrap) {
   if (!gridWrap.classList.contains("display-none")) {
     pageData.currentPage++;
     clearPressGrid();
     viewPressLogo(pageData, pressArr, gridWrap);
   }
-};
+}
 
-const gotoPrevGridPage = (event) => {
+function gotoPrevGridPage(event, pageData, pressArr, gridWrap) {
   if (!gridWrap.classList.contains("display-none")) {
     pageData.currentPage--;
     clearPressGrid();
     viewPressLogo(pageData, pressArr, gridWrap);
   }
-};
+}
 
 function clearPressGrid() {
   const pressBoxes = document.querySelectorAll(".press-box");

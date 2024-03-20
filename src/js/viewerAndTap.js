@@ -1,4 +1,4 @@
-import { store } from "./store.js";
+import { store } from "../../data/store.js";
 
 store.addObserver(renderViewer);
 store.addObserver(renderSubsTap);
