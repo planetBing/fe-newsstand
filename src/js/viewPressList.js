@@ -4,7 +4,7 @@ import {
   makeMainNewsHtml,
   makeNewsListHtml,
   makeCategoryNavHtml,
-} from "./htmlGenerators.js";
+} from "../utils/htmlGenerators.js";
 import { store } from "../../data/store.js";
 
 let currentPage = 1;

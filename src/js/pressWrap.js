@@ -1,9 +1,10 @@
 import { store } from "../../data/store.js";
 import { getLogoImgSrc, initAllPressGridView } from "./viewPressGrid.js";
 import { initAllPressListView } from "./viewPressList.js";
+import { makeInnerBoxesInMain } from "../utils/htmlGenerators.js";
 
 store.addObserver(convertAllPressGrid);
-store.addObserver(initAllPressList);
+store.addObserver(convertAllPressList);
 
 const pressWrap = document.querySelector(".press-wrap");
 
@@ -30,23 +31,18 @@ function convertAllPressGrid() {
   }
 }
 
-function initAllPressList() {
+function convertAllPressList() {
   const state = store.getState();
   if (state.viewType === "list" && state.subsType === "off") {
     pressWrap.classList.add("list");
     pressWrap.classList.remove("grid");
-    pressWrap.innerHTML = `<nav class="category center"></nav>
-    <div class="press-info center"></div>
-    <div class="news-list flex-space">
-        <div class="news-list-left"></div>
-        <div class="news-list-right">
-            <ul></ul>
-        </div>
-    </div>`;
+    pressWrap.innerHTML = makeInnerBoxesInMain();
     initAllPressListView();
   }
 }
 
-function initSubscribedPressGrid() {}
+function convertSubscribedPressGrid() {
+  const state = store.getState();
+}
 
-function initSubscribedPressList() {}
+function convertSubscribedPressList() {}

@@ -1,3 +1,14 @@
+export function makeInnerBoxesInMain() {
+  return `<nav class="category center"></nav>
+  <div class="press-info center"></div>
+  <div class="news-list flex-space">
+      <div class="news-list-left"></div>
+      <div class="news-list-right">
+          <ul></ul>
+      </div>
+  </div>`;
+}
+
 export function makeCategoryNavHtml(pressData) {
   const selectedCategory = pressData[0].category;
   const selectedCategoryHtml = `<div class="category-list center selected">
