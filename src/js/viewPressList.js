@@ -3,7 +3,9 @@ import {
   makePressInfoHtml,
   makeMainNewsHtml,
   makeNewsListHtml,
+  makeCategoryNavHtml,
 } from "./htmlGenerators.js";
+import { store } from "../../data/store.js";
 
 let currentPage = 1;
 let totalPage = 0;
@@ -13,31 +15,14 @@ const START_INDEX = 0;
 const START_PAGE_NUM = 1;
 const TIME_TO_TURN_PAGE = 20000;
 
-const mainEl = document.querySelector("main");
-const listWrap = mainEl.querySelector(".press-list-wrap");
-const categoryNav = mainEl.querySelector(".category");
-const pressInfoBox = mainEl.querySelector(".press-info");
-const mainNewsBox = mainEl.querySelector(".news-list-left");
-const newsListBox = mainEl.querySelector(".news-list-right ul");
-const nextButton = mainEl.querySelector(".right-button");
-const prevButton = mainEl.querySelector(".left-button");
+export function initAllPressListView() {
+  const nextButton = document.querySelector(".right-button");
+  const prevButton = document.querySelector(".left-button");
+  const categoryNav = document.querySelector(".category");
 
-export function switchToListByViewer() {
-  const listViewer = document.querySelector(".viewer-list");
-  const girdViewer = document.querySelector(".viewer-grid");
-  const gridWrap = document.querySelector(".press-grid-wrap");
+  nextButton.classList.remove("hidden");
+  prevButton.classList.remove("hidden");
 
-  listViewer.addEventListener("click", (event) => {
-    listViewer.classList.toggle("on");
-    girdViewer.classList.toggle("on");
-    listWrap.classList.toggle("display-none");
-    gridWrap.classList.toggle("display-none");
-    nextButton.classList.remove("hidden");
-    prevButton.classList.remove("hidden");
-  });
-}
-
-export function initPressListView() {
   initializeListView();
 
   nextButton.addEventListener("click", () => {
@@ -60,15 +45,23 @@ function initializeListView() {
 }
 
 function displayListCurrentPage(currentCategory, currentPage) {
+  const categoryNav = document.querySelector(".category");
+  const pressInfoBox = document.querySelector(".press-info");
+  const mainNewsBox = document.querySelector(".news-list-left");
+  const newsListBox = document.querySelector(".news-list-right ul");
+
   const currentPressData = pressData.find(
     (item) => item.category === currentCategory
   );
   const currentPressList = currentPressData.pressList;
   const currentPressObj = currentPressList[currentPage - 1];
 
+  const navBarHtml = makeCategoryNavHtml(pressData);
   const pressInfoHtml = makePressInfoHtml(currentPressObj);
   const mainNewsHtml = makeMainNewsHtml(currentPressObj);
   const newsListHtml = makeNewsListHtml(currentPressObj);
+
+  categoryNav.innerHTML = navBarHtml;
   pressInfoBox.innerHTML = pressInfoHtml;
   mainNewsBox.innerHTML = mainNewsHtml;
   newsListBox.innerHTML = newsListHtml;
@@ -76,6 +69,7 @@ function displayListCurrentPage(currentCategory, currentPage) {
 }
 
 function applyStyleToSelectedCategory() {
+  const categoryNav = document.querySelector(".category");
   const categoryLists = categoryNav.querySelectorAll(".category-list");
   categoryLists.forEach((category) => {
     const categoryText = category.querySelector(".category-text");
@@ -107,7 +101,8 @@ function removePressCountAndProgress(category) {
 }
 
 const gotoNextListPage = () => {
-  if (!listWrap.classList.contains("display-none")) {
+  const state = store.getState();
+  if (state.viewType === "list" && state.subsType === "off") {
     currentPage++;
     convertCategoryByLastPage();
     displayListCurrentPage(currentCategory, currentPage);
@@ -115,7 +110,8 @@ const gotoNextListPage = () => {
 };
 
 const gotoPrevListPage = () => {
-  if (!listWrap.classList.contains("display-none")) {
+  const state = store.getState();
+  if (state.viewType === "list" && state.subsType === "off") {
     currentPage--;
     convertCategoryByFirstPage();
     displayListCurrentPage(currentCategory, currentPage);

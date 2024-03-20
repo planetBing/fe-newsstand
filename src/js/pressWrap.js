@@ -1,5 +1,6 @@
 import { store } from "../../data/store.js";
 import { getLogoImgSrc, initAllPressGridView } from "./viewPressGrid.js";
+import { initAllPressListView } from "./viewPressList.js";
 
 store.addObserver(convertAllPressGrid);
 store.addObserver(initAllPressList);
@@ -16,9 +17,12 @@ function convertAllPressGrid() {
   if (state.viewType === "grid" && state.subsType === "off") {
     pressWrap.classList.add("grid");
     pressWrap.classList.remove("list");
+    let currentPage = 0;
+    const itemsPerPage = 24;
+    const pageData = { currentPage, itemsPerPage };
     getLogoImgSrc()
       .then((pressArr) => {
-        initAllPressGridView(pressArr);
+        initAllPressGridView(pressArr, pageData);
       })
       .catch((err) => {
         console.log("데이터 불러오는 중 오류 발생", err);
@@ -31,7 +35,15 @@ function initAllPressList() {
   if (state.viewType === "list" && state.subsType === "off") {
     pressWrap.classList.add("list");
     pressWrap.classList.remove("grid");
-    console.log(pressWrap);
+    pressWrap.innerHTML = `<nav class="category center"></nav>
+    <div class="press-info center"></div>
+    <div class="news-list flex-space">
+        <div class="news-list-left"></div>
+        <div class="news-list-right">
+            <ul></ul>
+        </div>
+    </div>`;
+    initAllPressListView();
   }
 }
 

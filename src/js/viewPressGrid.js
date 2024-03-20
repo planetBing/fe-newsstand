@@ -1,21 +1,12 @@
-// let currentPage = 0;
-// const itemsPerPage = 24;
-// const LAST_PAGE = 3;
-// const FIRST_PAGE = 0;
+import { store } from "../../data/store.js";
+const LAST_PAGE = 3;
+const FIRST_PAGE = 0;
 
-// const pressArr = await getLogoImgSrc();
-// const gridWrap = document.querySelector(".press-grid-wrap");
-// const nextButton = document.querySelector(".right-button");
-// const prevButton = document.querySelector(".left-button");
-// const pageData = { currentPage, itemsPerPage };
-
-export function initAllPressGridView(pressArr) {
-  let currentPage = 0;
-  const itemsPerPage = 24;
+export function initAllPressGridView(pressArr, pageData) {
   const nextButton = document.querySelector(".right-button");
   const prevButton = document.querySelector(".left-button");
   const gridWrap = document.querySelector(".grid");
-  const pageData = { currentPage, itemsPerPage };
+
   viewPressLogo(pageData, pressArr, gridWrap);
 
   nextButton.addEventListener("click", (event) =>
@@ -42,25 +33,23 @@ function viewPressLogo(pageData, logoSrcArr, gridWrap) {
   const startIndex = pageData.currentPage * pageData.itemsPerPage;
   const endIndex = startIndex + pageData.itemsPerPage;
 
-  logoSrcArr.slice(startIndex, endIndex).forEach((obj) => {
-    const newPressBox = document.createElement("div");
-    const newsLogo = document.createElement("img");
-    const subsBtn = document.createElement("span");
-    newsLogo.src = obj.brandMark;
-    newsLogo.alt = obj.pressName;
-    subsBtn.innerText = "+ 구독하기";
-    newPressBox.classList.add("press-box");
-    newsLogo.classList.add("press-logo");
-    subsBtn.classList.add("subs", "pointer");
-    newPressBox.append(newsLogo, subsBtn);
-    gridWrap.appendChild(newPressBox);
+  const pressBoxesHtml = logoSrcArr
+    .slice(startIndex, endIndex)
+    .map((pressObj) => {
+      return `<div class="press-box">
+    <img class="press-logo" src="${pressObj.brandMark}" alt="${pressObj.pressName}">
+    <span class="subs pointer">+ 구독하기</span>
+  </div>`;
+    })
+    .join("");
 
-    // renderBtnByGridPage();
-  });
+  gridWrap.innerHTML = pressBoxesHtml;
+  renderBtnByGridPage(pageData);
 }
 
 function gotoNextGridPage(event, pageData, pressArr, gridWrap) {
-  if (!gridWrap.classList.contains("display-none")) {
+  const state = store.getState();
+  if (state.viewType === "grid" && state.subsType === "off") {
     pageData.currentPage++;
     clearPressGrid();
     viewPressLogo(pageData, pressArr, gridWrap);
@@ -68,7 +57,8 @@ function gotoNextGridPage(event, pageData, pressArr, gridWrap) {
 }
 
 function gotoPrevGridPage(event, pageData, pressArr, gridWrap) {
-  if (!gridWrap.classList.contains("display-none")) {
+  const state = store.getState();
+  if (state.viewType === "grid" && state.subsType === "off") {
     pageData.currentPage--;
     clearPressGrid();
     viewPressLogo(pageData, pressArr, gridWrap);
@@ -82,7 +72,9 @@ function clearPressGrid() {
   }
 }
 
-function renderBtnByGridPage() {
+function renderBtnByGridPage(pageData) {
+  const nextButton = document.querySelector(".right-button");
+  const prevButton = document.querySelector(".left-button");
   if (pageData.currentPage === LAST_PAGE) nextButton.classList.add("hidden");
   if (pageData.currentPage !== FIRST_PAGE)
     prevButton.classList.remove("hidden");
