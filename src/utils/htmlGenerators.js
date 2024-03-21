@@ -1,4 +1,4 @@
-export function makeInnerBoxesInMain() {
+export function makeInnerBoxesInListWrap() {
   return `<nav class="category center"></nav>
   <div class="press-info center"></div>
   <div class="news-list flex-space">
@@ -6,6 +6,13 @@ export function makeInnerBoxesInMain() {
       <div class="news-list-right">
           <ul></ul>
       </div>
+  </div>`;
+}
+
+export function makePressBoxesInGridWrap(pressObj, subsOrUnsubs) {
+  return `<div class="press-box">
+    <img class="press-logo" src="${pressObj.brandMark}" alt="${pressObj.pressName}">
+    <span class="subs pointer">${subsOrUnsubs}</span>
   </div>`;
 }
 

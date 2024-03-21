@@ -1,20 +1,23 @@
 import { store } from "../../data/store.js";
+import { makePressBoxesInGridWrap } from "../utils/htmlGenerators.js";
+
 const LAST_PAGE = 3;
 const FIRST_PAGE = 0;
 
-export function initAllPressGridView(pressArr, pageData) {
+export async function initAllPressGridView(subsGridData, pageData) {
   const nextButton = document.querySelector(".right-button");
   const prevButton = document.querySelector(".left-button");
   const gridWrap = document.querySelector(".grid");
+  const pressArr = await getLogoImgSrc();
 
-  viewPressLogo(pageData, pressArr, gridWrap);
+  viewPressLogo(pageData, pressArr, gridWrap, subsGridData);
 
   nextButton.addEventListener("click", (event) =>
-    gotoNextGridPage(event, pageData, pressArr, gridWrap)
+    gotoNextGridPage(event, pageData, pressArr, gridWrap, subsGridData)
   );
 
   prevButton.addEventListener("click", (event) =>
-    gotoPrevGridPage(event, pageData, pressArr, gridWrap)
+    gotoPrevGridPage(event, pageData, pressArr, gridWrap, subsGridData)
   );
 }
 
@@ -29,17 +32,16 @@ export async function getLogoImgSrc() {
   }
 }
 
-function viewPressLogo(pageData, logoSrcArr, gridWrap) {
+function viewPressLogo(pageData, logoSrcArr, gridWrap, subsGridData) {
   const startIndex = pageData.currentPage * pageData.itemsPerPage;
   const endIndex = startIndex + pageData.itemsPerPage;
 
   const pressBoxesHtml = logoSrcArr
     .slice(startIndex, endIndex)
     .map((pressObj) => {
-      return `<div class="press-box">
-    <img class="press-logo" src="${pressObj.brandMark}" alt="${pressObj.pressName}">
-    <span class="subs pointer">+ 구독하기</span>
-  </div>`;
+      const subsOrUnsubs = decideToSubsOrUnSubs(pressObj, subsGridData);
+      const pressBoxesHtml = makePressBoxesInGridWrap(pressObj, subsOrUnsubs);
+      return pressBoxesHtml;
     })
     .join("");
 
@@ -47,23 +49,34 @@ function viewPressLogo(pageData, logoSrcArr, gridWrap) {
   renderBtnByGridPage(pageData);
 }
 
-function gotoNextGridPage(event, pageData, pressArr, gridWrap) {
+function decideToSubsOrUnSubs(pressObj, subsGridData) {
+  const currentPressName = pressObj.pressName;
+  const subsPressNameArr = subsGridData.map((subsObj) => subsObj.pressName);
+  const findingDuplicate = subsPressNameArr.filter(
+    (subsPress) => subsPress === currentPressName
+  );
+  const subsORUnsubs =
+    findingDuplicate.length <= 0 ? "+ 구독하기" : "- 해지하기";
+  return subsORUnsubs;
+}
+
+function gotoNextGridPage(event, pageData, pressArr, gridWrap, subsGridData) {
   const state = store.getState();
   if (state.viewType === "grid" && state.subsType === "off") {
     pageData.currentPage++;
     clearPressGrid();
-    viewPressLogo(pageData, pressArr, gridWrap);
+    viewPressLogo(pageData, pressArr, gridWrap, subsGridData);
   } else {
     return;
   }
 }
 
-function gotoPrevGridPage(event, pageData, pressArr, gridWrap) {
+function gotoPrevGridPage(event, pageData, pressArr, gridWrap, subsGridData) {
   const state = store.getState();
   if (state.viewType === "grid" && state.subsType === "off") {
     pageData.currentPage--;
     clearPressGrid();
-    viewPressLogo(pageData, pressArr, gridWrap);
+    viewPressLogo(pageData, pressArr, gridWrap, subsGridData);
   } else {
     return;
   }

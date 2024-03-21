@@ -154,6 +154,10 @@ main {
   display: none;
 }
 
+.press-box:hover {
+  background-color: rgba(245, 247, 249, 1);
+}
+
 .press-box:hover .subs {
   display: block;
   font-size: 13px;
@@ -165,6 +169,7 @@ main {
   padding: auto;
   border: 1px solid rgba(210, 218, 224, 1);
   border-radius: 50px;
+  background-color: rgba(255, 255, 255, 1);
 }
 
 .press-box:hover .press-logo {
