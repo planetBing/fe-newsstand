@@ -12,7 +12,7 @@ export async function initPressView() {
   convertAllPressGrid();
 }
 
-function getSubscribedGridPressData() {
+export function getSubscribedGridPressData() {
   return new Promise((resolve, reject) => {
     fetch("http://localhost:3000/gridSubs")
       .then((response) => {

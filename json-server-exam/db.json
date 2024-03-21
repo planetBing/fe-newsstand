@@ -1,11 +1,6 @@
 {
   "gridSubs": [
     {
-      "id": "7681",
-      "pressName": "노컷뉴스",
-      "brandMark": "https://s.pstatic.net/static/newsstand/2020/logo/light/0604/079.png"
-    },
-    {
       "id": "be3f",
       "pressName": "스포츠서울",
       "brandMark": "https://s.pstatic.net/static/newsstand/up/2020/0708/nsd94830278.png"
@@ -39,6 +34,106 @@
       "id": "b57d",
       "pressName": "코리아타임스",
       "brandMark": "https://s.pstatic.net/static/newsstand/2020/logo/light/0604/040.png"
+    },
+    {
+      "id": "e299",
+      "pressName": "국민일보",
+      "brandMark": "https://s.pstatic.net/static/newsstand/2020/logo/light/0604/005.png"
+    },
+    {
+      "id": "d16d",
+      "pressName": "매경헬스",
+      "brandMark": "https://s.pstatic.net/static/newsstand/up/2023/0330/nsd10125746.png"
+    },
+    {
+      "id": "070e",
+      "pressName": "뉴시스",
+      "brandMark": "https://s.pstatic.net/static/newsstand/2020/logo/light/0604/003.png"
+    },
+    {
+      "id": "1fcb",
+      "pressName": "문화일보",
+      "brandMark": "https://s.pstatic.net/static/newsstand/2020/logo/light/0604/021.png"
+    },
+    {
+      "id": "4b18",
+      "pressName": "JTBC",
+      "brandMark": "https://s.pstatic.net/static/newsstand/2020/logo/light/0604/904.png"
+    },
+    {
+      "id": "acb4",
+      "pressName": "인사이트코리아",
+      "brandMark": "https://s.pstatic.net/static/newsstand/2020/logo/light/0604/807.png"
+    },
+    {
+      "id": "1358",
+      "pressName": "전기신문",
+      "brandMark": "https://s.pstatic.net/static/newsstand/2020/logo/light/0604/965.png"
+    },
+    {
+      "id": "e674",
+      "pressName": "철강금속신문",
+      "brandMark": "https://s.pstatic.net/static/newsstand/2020/logo/light/0604/956.png"
+    },
+    {
+      "id": "5bae",
+      "pressName": "티브이데일리",
+      "brandMark": "https://s.pstatic.net/static/newsstand/2020/logo/light/0604/440.png"
+    },
+    {
+      "id": "9e8c",
+      "pressName": "한겨레",
+      "brandMark": "https://s.pstatic.net/static/newsstand/up/2024/0219/nsd145828169.png"
+    },
+    {
+      "id": "7d04",
+      "pressName": "소비자가만드는신문",
+      "brandMark": "https://s.pstatic.net/static/newsstand/2020/logo/light/0604/970.png"
+    },
+    {
+      "id": "4e04",
+      "pressName": "OSEN",
+      "brandMark": "https://s.pstatic.net/static/newsstand/up/2020/0610/nsd151458769.png"
+    },
+    {
+      "id": "57c6",
+      "pressName": "헤럴드경제",
+      "brandMark": "https://s.pstatic.net/static/newsstand/2020/logo/light/0604/016.png"
+    },
+    {
+      "id": "653b",
+      "pressName": "지디넷코리아",
+      "brandMark": "https://s.pstatic.net/static/newsstand/up/2022/0905/nsd131925414.png"
+    },
+    {
+      "id": "c3b4",
+      "pressName": "매일경제",
+      "brandMark": "https://s.pstatic.net/static/newsstand/2020/logo/light/0604/009.png"
+    },
+    {
+      "id": "874b",
+      "pressName": "일요시사",
+      "brandMark": "https://s.pstatic.net/static/newsstand/2020/logo/light/0604/971.png"
+    },
+    {
+      "id": "2611",
+      "pressName": "코리아헤럴드",
+      "brandMark": "https://s.pstatic.net/static/newsstand/2020/logo/light/0604/044.png"
+    },
+    {
+      "id": "d947",
+      "pressName": "지지통신",
+      "brandMark": "https://s.pstatic.net/static/newsstand/2020/logo/light/0604/376.png"
+    },
+    {
+      "id": "f2aa",
+      "pressName": "스포츠조선",
+      "brandMark": "https://s.pstatic.net/static/newsstand/2020/logo/light/0604/076.png"
+    },
+    {
+      "id": "7f2a",
+      "pressName": "YONHAPNEWS",
+      "brandMark": "https://s.pstatic.net/static/newsstand/2020/logo/light/0604/946.png"
     }
   ],
   "listSubs": []
