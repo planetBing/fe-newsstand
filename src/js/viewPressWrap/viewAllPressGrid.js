@@ -1,5 +1,5 @@
-import { store } from "../../data/store.js";
-import { makePressBoxesInGridWrap } from "../utils/htmlGenerators.js";
+import { store } from "../../../data/store.js";
+import { makePressBoxesInGridWrap } from "../../utils/htmlGenerators.js";
 
 const LAST_PAGE = 3;
 const FIRST_PAGE = 0;

@@ -1,7 +1,7 @@
 import {
-  getSubsData,
-  postSubsData,
-  deleteSubsData,
+  getSubscriptionData,
+  postSubscriptionData,
+  deleteSubscriptionData,
 } from "../utils/pressDataApi.js";
 
 export function handleSubscriptionOnClick() {
@@ -26,7 +26,7 @@ function subscribeGridPress(event) {
   const brandMark = imgEl.getAttribute("src");
   const pressData = { pressName: pressName, brandMark: brandMark };
 
-  postSubsData("gridSubs", pressData);
+  postSubscriptionData("gridSubs", pressData);
 }
 
 async function unsubscribGridPress(event) {
@@ -35,8 +35,8 @@ async function unsubscribGridPress(event) {
   const pressBox = event.target.parentNode;
   const imgEl = pressBox.querySelector(".press-logo");
   const pressName = imgEl.getAttribute("alt");
-  const subsData = await getSubsData("gridSubs");
+  const subsData = await getSubscriptionData("gridSubs");
   const pressId = subsData.find((Obj) => Obj.pressName === pressName).id;
 
-  deleteSubsData("gridSubs", pressId);
+  deleteSubscriptionData("gridSubs", pressId);
 }

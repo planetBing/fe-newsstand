@@ -1,11 +1,11 @@
-import { pressData } from "../../data/categoryDictionary.js";
+import { pressData } from "../../../data/categoryDictionary.js";
 import {
   makePressInfoHtml,
   makeMainNewsHtml,
   makeNewsListHtml,
   makeCategoryNavHtml,
-} from "../utils/htmlGenerators.js";
-import { store } from "../../data/store.js";
+} from "../../utils/htmlGenerators.js";
+import { store } from "../../../data/store.js";
 
 let currentPage = 1;
 let totalPage = 0;

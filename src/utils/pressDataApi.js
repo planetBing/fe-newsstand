@@ -1,4 +1,4 @@
-export async function getSubsData(path) {
+export async function getSubscriptionData(path) {
   const request = {
     method: "GET",
     headers: {
@@ -13,7 +13,7 @@ export async function getSubsData(path) {
   return news;
 }
 
-export async function postSubsData(path, pressData) {
+export async function postSubscriptionData(path, pressData) {
   const request = {
     method: "POST",
     headers: {
@@ -30,7 +30,7 @@ export async function postSubsData(path, pressData) {
     .catch((error) => console.error("서버와의 통신 중 오류 발생:", error));
 }
 
-export async function deleteSubsData(path, pressId) {
+export async function deleteSubscriptionData(path, pressId) {
   const request = {
     method: "DELETE",
     headers: {
