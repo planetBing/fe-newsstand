@@ -2,6 +2,7 @@ import { store } from "../../data/store.js";
 import { initAllPressGridView } from "./viewPressGrid.js";
 import { initAllPressListView } from "./viewPressList.js";
 import { makeInnerBoxesInListWrap } from "../utils/htmlGenerators.js";
+import { getSubsData } from "../utils/pressDataApi.js";
 
 store.addObserver(convertAllPressGrid);
 store.addObserver(convertAllPressList);
@@ -12,20 +13,20 @@ export async function initPressView() {
   convertAllPressGrid();
 }
 
-export function getSubscribedGridPressData() {
-  return new Promise((resolve, reject) => {
-    fetch("http://localhost:3000/gridSubs")
-      .then((response) => {
-        if (!response.ok) throw new Error("Response is not ok!");
-        const pressData = response.json();
-        resolve(pressData);
-      })
-      .catch((err) => {
-        console.error("JSON 파일을 가져오는 도중 에러 발생.", err);
-        reject(err);
-      });
-  });
-}
+// export function getSubscribedGridPressData() {
+//   return new Promise((resolve, reject) => {
+//     fetch("http://localhost:3000/gridSubs")
+//       .then((response) => {
+//         if (!response.ok) throw new Error("Response is not ok!");
+//         const pressData = response.json();
+//         resolve(pressData);
+//       })
+//       .catch((err) => {
+//         console.error("JSON 파일을 가져오는 도중 에러 발생.", err);
+//         reject(err);
+//       });
+//   });
+// }
 
 function convertAllPressGrid() {
   const state = store.getState();
@@ -36,7 +37,7 @@ function convertAllPressGrid() {
     let currentPage = 0;
     const itemsPerPage = 24;
     const pageData = { currentPage, itemsPerPage };
-    getSubscribedGridPressData()
+    getSubsData("gridSubs")
       .then((subsGridData) => {
         initAllPressGridView(subsGridData, pageData);
       })
