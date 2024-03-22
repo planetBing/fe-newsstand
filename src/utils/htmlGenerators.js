@@ -56,3 +56,19 @@ export function makeNewsListHtml(eachPressObj) {
   newsListHtml += `<div>${eachPressObj.pressName}에서 직접 편집한 뉴스입니다.</div>`;
   return newsListHtml;
 }
+
+export function makePressNavHtml(subsListData) {
+  const selectedCategory = subsListData[subsListData.length - 1].pressName;
+  const restOfCategoryHtml = subsListData
+    .slice(0, subsListData.length - 1)
+    .map((pressObj) => {
+      return `<div class="category-list center"><a href="#" class="category-text">${pressObj.pressName}</a></div>`;
+    })
+    .join("");
+  const selectedCategoryHtml = `<div class="category-list center selected">
+  <a href="#" class="category-text">${selectedCategory}</a>
+  <div class="progress"></div>
+</div>`;
+  const allCategoriesHtml = restOfCategoryHtml + selectedCategoryHtml;
+  return allCategoriesHtml;
+}

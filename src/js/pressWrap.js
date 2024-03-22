@@ -2,12 +2,14 @@ import { store } from "../../data/store.js";
 import { initAllPressGridView } from "./viewPressWrap/viewAllPressGrid.js";
 import { initAllPressListView } from "./viewPressWrap/viewAllPressList.js";
 import { initSubsPressGridView } from "./viewPressWrap/viewSubsPressGrid.js";
+import { initSubsPressListView } from "./viewPressWrap/viewSubsPressList.js";
 import { makeInnerBoxesInListWrap } from "../utils/htmlGenerators.js";
 import { getSubscriptionData } from "../utils/pressDataApi.js";
 
 store.addObserver(convertAllPressGrid);
 store.addObserver(convertAllPressList);
 store.addObserver(convertSubscribedPressGrid);
+store.addObserver(convertSubscribedPressList);
 
 const pressWrap = document.querySelector(".press-wrap");
 
@@ -61,5 +63,15 @@ function convertSubscribedPressGrid() {
 function convertSubscribedPressList() {
   const state = store.getState();
   if (state.viewType === "list" && state.subsType === "on") {
+    pressWrap.classList.add("list");
+    pressWrap.classList.remove("grid");
+    pressWrap.innerHTML = makeInnerBoxesInListWrap();
+    getSubscriptionData("listSubs")
+      .then((subsListData) => {
+        initSubsPressListView(subsListData);
+      })
+      .catch((err) => {
+        console.log("데이터 불러오는 중 오류 발생", err);
+      });
   }
 }

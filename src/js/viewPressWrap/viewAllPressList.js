@@ -27,6 +27,7 @@ export function initAllPressListView() {
   initializeListView();
   nextButton.removeEventListener("click", handleNextBtn);
   nextButton.addEventListener("click", handleNextBtn);
+  prevButton.removeEventListener("click", handlePrevBtn);
   prevButton.addEventListener("click", handlePrevBtn);
 
   categoryNav.addEventListener("click", gotoCategory);

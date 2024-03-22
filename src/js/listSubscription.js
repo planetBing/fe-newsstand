@@ -4,7 +4,10 @@ import {
   postSubscriptionData,
   deleteSubscriptionData,
 } from "../utils/pressDataApi.js";
+import { store } from "../../data/store.js";
 import { showSnackbar } from "../utils/snackbarFactory.js";
+
+const STORE_CHANGE_TIME = 100;
 
 export function handleListSubsOnClick() {
   const listWrap = document.querySelector(".grid");
@@ -40,6 +43,7 @@ function subscribeListPress(event) {
 
   postSubscriptionData("listSubs", subscribedPress);
   showSnackbar("내가 구독한 언론사에 추가되었습니다.");
+  store.setState({ viewType: "list", subsType: "on" });
 }
 
 async function unsubscribeListPress(event) {
@@ -53,4 +57,7 @@ async function unsubscribeListPress(event) {
 
   deleteSubscriptionData("listSubs", pressId);
   showSnackbar("구독 해지되었습니다.");
+  setTimeout(() => {
+    store.setState({ viewType: "list", subsType: "on" });
+  }, STORE_CHANGE_TIME);
 }
