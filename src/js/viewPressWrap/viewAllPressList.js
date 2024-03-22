@@ -24,27 +24,32 @@ export function initAllPressListView() {
   prevButton.classList.remove("hidden");
 
   initializeListView();
+  nextButton.removeEventListener("click", handleNextBtn);
+  nextButton.addEventListener("click", handleNextBtn);
+  prevButton.addEventListener("click", handlePrevBtn);
 
-  nextButton.addEventListener("click", () => {
-    gotoNextListPage();
-    resetTimer();
-  });
-  prevButton.addEventListener("click", () => {
-    gotoPrevListPage();
-    resetTimer();
-  });
   categoryNav.addEventListener("click", gotoCategory);
 
+  resetTimer();
+}
+
+function handleNextBtn() {
+  gotoNextListPage();
+  resetTimer();
+}
+
+function handlePrevBtn() {
+  gotoPrevListPage();
   resetTimer();
 }
 
 function initializeListView() {
   currentCategory = pressData[START_INDEX].category;
   totalPage = pressData[START_INDEX].pressList.length;
-  displayListCurrentPage(currentCategory, currentPage);
+  displayListCurrentPage();
 }
 
-function displayListCurrentPage(currentCategory, currentPage) {
+function displayListCurrentPage() {
   const categoryNav = document.querySelector(".category");
   const pressInfoBox = document.querySelector(".press-info");
   const mainNewsBox = document.querySelector(".news-list-left");
@@ -104,6 +109,7 @@ function gotoNextListPage() {
   const state = store.getState();
   if (state.viewType === "list" && state.subsType === "off") {
     currentPage++;
+    console.log("다음 버튼에 의해", currentPage);
     convertCategoryByLastPage();
     displayListCurrentPage(currentCategory, currentPage);
   } else {
@@ -115,6 +121,7 @@ function gotoPrevListPage() {
   const state = store.getState();
   if (state.viewType === "list" && state.subsType === "off") {
     currentPage--;
+    console.log("이전버튼에 의해", currentPage);
     convertCategoryByFirstPage();
     displayListCurrentPage(currentCategory, currentPage);
   } else {
@@ -180,6 +187,7 @@ function resetTimer() {
 }
 
 function gotoNextPageAndSetTimer() {
+  console.log("타이머에 의해", currentPage);
   gotoNextListPage();
   resetTimer();
 }

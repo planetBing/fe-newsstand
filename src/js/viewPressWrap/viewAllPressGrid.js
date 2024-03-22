@@ -3,6 +3,8 @@ import { makePressBoxesInGridWrap } from "../../utils/htmlGenerators.js";
 
 const LAST_PAGE = 3;
 const FIRST_PAGE = 0;
+let nextEventBinding;
+let prevEventBinding;
 
 export async function initAllPressGridView(subsGridData, pageData) {
   const nextButton = document.querySelector(".right-button");
@@ -12,13 +14,17 @@ export async function initAllPressGridView(subsGridData, pageData) {
 
   viewPressLogo(pageData, pressArr, gridWrap, subsGridData);
 
-  nextButton.addEventListener("click", (event) =>
-    gotoNextGridPage(event, pageData, pressArr, gridWrap, subsGridData)
-  );
+  const nextEventHandler = (event) =>
+    gotoNextGridPage(event, pageData, pressArr, gridWrap, subsGridData);
+  nextButton.removeEventListener("click", nextEventBinding);
+  nextEventBinding = nextEventHandler;
+  nextButton.addEventListener("click", nextEventBinding);
 
-  prevButton.addEventListener("click", (event) =>
-    gotoPrevGridPage(event, pageData, pressArr, gridWrap, subsGridData)
-  );
+  const prevEventHandler = (event) =>
+    gotoPrevGridPage(event, pageData, pressArr, gridWrap, subsGridData);
+  prevButton.addEventListener("click", prevEventBinding);
+  prevEventBinding = prevEventHandler;
+  prevButton.addEventListener("click", prevEventBinding);
 }
 
 export async function getLogoImgSrc() {

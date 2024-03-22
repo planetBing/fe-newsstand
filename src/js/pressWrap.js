@@ -58,4 +58,8 @@ function convertSubscribedPressGrid() {
   }
 }
 
-function convertSubscribedPressList() {}
+function convertSubscribedPressList() {
+  const state = store.getState();
+  if (state.viewType === "list" && state.subsType === "on") {
+  }
+}

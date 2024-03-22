@@ -211,3 +211,47 @@ body {
 .hidden {
   display: none;
 }
+
+.snackbar {
+  /* visibility: hidden; */
+  width: 286px;
+  height: 54px;
+  background-color: rgba(67, 98, 208, 1);
+  color: rgba(255, 255, 255, 1);
+  text-align: center;
+  line-height: 54px;
+  left: 50%;
+  z-index: 1;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+
+.snackbar.show {
+  opacity: 1;
+}
+
+@keyframes fadein {
+  from {
+    bottom: 0;
+    opacity: 0;
+  }
+  to {
+    bottom: 30px;
+    opacity: 1;
+  }
+}
+
+@keyframes fadeout {
+  from {
+    bottom: 30px;
+    opacity: 1;
+  }
+  to {
+    bottom: 0;
+    opacity: 0;
+  }
+}
