@@ -32,10 +32,10 @@ export function makeCategoryNavHtml(pressData) {
   return allCategoriesHtml;
 }
 
-export function makePressInfoHtml(eachPressObj) {
-  const html = `<span><img src="${eachPressObj.brandMark}"></span>
+export function makePressInfoHtml(eachPressObj, subsOrUnsubs) {
+  const html = `<span><img src="${eachPressObj.brandMark}" alt=${eachPressObj.pressName}></span>
     <span class="edit-date">${eachPressObj.editDate}</span>
-    <button class="subs-btn">+ 구독하기</button>`;
+    <button class="subs-btn pointer">${subsOrUnsubs}</button>`;
   return html;
 }
 

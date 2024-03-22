@@ -27,6 +27,10 @@ export async function initAllPressGridView(subsGridData, pageData) {
   prevButton.addEventListener("click", prevEventBinding);
 }
 
+function nextEventHandler(event) {
+  gotoNextGridPage(event, pageData, pressArr, gridWrap, subsGridData);
+}
+
 export async function getLogoImgSrc() {
   try {
     const response = await fetch("./data/gridPress.json");

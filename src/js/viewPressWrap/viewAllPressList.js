@@ -5,6 +5,7 @@ import {
   makeNewsListHtml,
   makeCategoryNavHtml,
 } from "../../utils/htmlGenerators.js";
+import { getSubscriptionData } from "../../utils/pressDataApi.js";
 import { store } from "../../../data/store.js";
 
 let currentPage = 1;
@@ -49,20 +50,18 @@ function initializeListView() {
   displayListCurrentPage();
 }
 
-function displayListCurrentPage() {
+async function displayListCurrentPage() {
   const categoryNav = document.querySelector(".category");
   const pressInfoBox = document.querySelector(".press-info");
   const mainNewsBox = document.querySelector(".news-list-left");
   const newsListBox = document.querySelector(".news-list-right ul");
 
-  const currentPressData = pressData.find(
-    (item) => item.category === currentCategory
-  );
-  const currentPressList = currentPressData.pressList;
-  const currentPressObj = currentPressList[currentPage - 1];
+  const currentPressObj = getCurrentPressObj();
+  const subscribedList = await getSubscriptionData("listSubs");
+  const subsOrUnsubs = decideToSubsOrUnSubs(currentPressObj, subscribedList);
 
   const navBarHtml = makeCategoryNavHtml(pressData);
-  const pressInfoHtml = makePressInfoHtml(currentPressObj);
+  const pressInfoHtml = makePressInfoHtml(currentPressObj, subsOrUnsubs);
   const mainNewsHtml = makeMainNewsHtml(currentPressObj);
   const newsListHtml = makeNewsListHtml(currentPressObj);
 
@@ -71,6 +70,24 @@ function displayListCurrentPage() {
   mainNewsBox.innerHTML = mainNewsHtml;
   newsListBox.innerHTML = newsListHtml;
   applyStyleToSelectedCategory();
+}
+
+function getCurrentPressObj() {
+  const currentPressData = pressData.find(
+    (item) => item.category === currentCategory
+  );
+  const currentPressList = currentPressData.pressList;
+  const currentPressObj = currentPressList[currentPage - 1];
+  return currentPressObj;
+}
+
+function decideToSubsOrUnSubs(currentPressObj, subscribedListPress) {
+  const currentPressName = currentPressObj.pressName;
+  const filteredArr = subscribedListPress.filter(
+    (pressObj) => pressObj.pressName === currentPressName
+  );
+  const subsOrUnsubs = filteredArr.length <= 0 ? "+ 구독하기" : "- 해지하기";
+  return subsOrUnsubs;
 }
 
 function applyStyleToSelectedCategory() {
@@ -109,7 +126,6 @@ function gotoNextListPage() {
   const state = store.getState();
   if (state.viewType === "list" && state.subsType === "off") {
     currentPage++;
-    console.log("다음 버튼에 의해", currentPage);
     convertCategoryByLastPage();
     displayListCurrentPage(currentCategory, currentPage);
   } else {
@@ -121,7 +137,6 @@ function gotoPrevListPage() {
   const state = store.getState();
   if (state.viewType === "list" && state.subsType === "off") {
     currentPage--;
-    console.log("이전버튼에 의해", currentPage);
     convertCategoryByFirstPage();
     displayListCurrentPage(currentCategory, currentPage);
   } else {
@@ -187,7 +202,6 @@ function resetTimer() {
 }
 
 function gotoNextPageAndSetTimer() {
-  console.log("타이머에 의해", currentPage);
   gotoNextListPage();
   resetTimer();
 }

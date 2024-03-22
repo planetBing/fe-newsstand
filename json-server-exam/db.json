@@ -9,7 +9,176 @@
       "id": "f63c",
       "pressName": "소년한국일보",
       "brandMark": "https://s.pstatic.net/static/newsstand/up/2021/0728/nsd1110888.png"
+    },
+    {
+      "id": "a67c",
+      "pressName": "YTN",
+      "brandMark": "https://s.pstatic.net/static/newsstand/2020/logo/light/0604/052.png"
+    },
+    {
+      "id": "2695",
+      "pressName": "스포츠춘추",
+      "brandMark": "https://s.pstatic.net/static/newsstand/up/2022/0116/nsd19454239.png"
+    },
+    {
+      "id": "7dd4",
+      "pressName": "MBN",
+      "brandMark": "https://s.pstatic.net/static/newsstand/2020/logo/light/0604/057.png"
+    },
+    {
+      "id": "87b9",
+      "pressName": "한국경제",
+      "brandMark": "https://s.pstatic.net/static/newsstand/2020/logo/light/0604/015.png"
     }
   ],
-  "listSubs": []
+  "listSubs": [
+    {
+      "id": "3149",
+      "pressName": "일요시사",
+      "brandMark": "https://s.pstatic.net/static/newsstand/2020/logo/light/0604/971.png",
+      "editDate": "03월 13일 22:50 직접 편집",
+      "mainNews": {
+        "thumb": "https://s.pstatic.net/dthumb.phinf/?src=%22https%3A%2F%2Fs.pstatic.net%2Fstatic%2Fnewsstand%2F2024%2F0313%2Farticle_img%2Fnew_main%2F9194%2F225557_001.jpg%22&type=nf312_208&service=navermain",
+        "title": "제2의 소쿠리 투표 논란? ‘총선 코앞’ 시끄러운 선관위 내막",
+        "link": "https://www.ilyosisa.co.kr/news/article.html?no=242738"
+      },
+      "newsList": [
+        {
+          "title": "5분이면 땡? ‘아무나 만드는’ 딥페이크 만들어 보니…",
+          "link": "https://www.ilyosisa.co.kr/news/article.html?no=242762"
+        },
+        {
+          "title": "경력직 우선? 돌려막기로 끝난 국민의힘 공천 막전막후",
+          "link": "https://www.ilyosisa.co.kr/news/article.html?no=242758"
+        },
+        {
+          "title": "“다른 데 투자가 더 낫다?” 정부 생색용 ‘청년도약계좌’ 속살",
+          "link": "https://www.ilyosisa.co.kr/news/article.html?no=242751"
+        },
+        {
+          "title": "<단독> ‘임용 취소’ 불구…끝나지 않은 광주교대 채용 사태",
+          "link": "https://www.ilyosisa.co.kr/news/article.html?no=242740"
+        },
+        {
+          "title": "<4·10 총선 격전지를 가다> ‘반도체 벨트’ 경기도 화성시",
+          "link": "https://www.ilyosisa.co.kr/news/article.html?no=242761"
+        },
+        {
+          "title": "<정치를 만나다> ‘민주당 스피커’ 강선우 “윤석열 능력?”",
+          "link": "https://www.ilyosisa.co.kr/news/article.html?no=242760"
+        }
+      ]
+    },
+    {
+      "id": "e77f",
+      "pressName": "이코노미스트",
+      "brandMark": "https://s.pstatic.net/static/newsstand/2020/logo/light/0604/243.png",
+      "editDate": "03월 15일 06:47 직접 편집",
+      "mainNews": {
+        "thumb": "https://s.pstatic.net/dthumb.phinf/?src=%22https%3A%2F%2Fs.pstatic.net%2Fstatic%2Fnewsstand%2F2024%2F0315%2Farticle_img%2Fnew_main%2F9163%2F065556_001.jpg%22&type=nf312_208&service=navermain",
+        "title": "“현주엽, 방송 때문에 훈련 불참”…휘문고 농구부 학부모들 뿔났다",
+        "link": "https://economist.co.kr/article/view/ecn202403140055"
+      },
+      "newsList": [
+        {
+          "title": "주택가격 상승 기대 떨어졌다…“PF 시장이 부동산 부진 원인”",
+          "link": "https://economist.co.kr/article/view/ecn202403140005"
+        },
+        {
+          "title": "건강·연금보험 신규 가입, 3월에 서둘러야 하는 이유 [이코노Y]",
+          "link": "https://economist.co.kr/article/view/ecn202403140015"
+        },
+        {
+          "title": "한은 “물가 2% 안정 확신 이르다”…긴축 필요성 재차 강조",
+          "link": "https://economist.co.kr/article/view/ecn202403140013"
+        },
+        {
+          "title": "지난해 주담대 46조원 증가…“올해 정책대출 공급 줄어들 것”",
+          "link": "https://economist.co.kr/article/view/ecn202403140008"
+        },
+        {
+          "title": "“코로나 후 美 연준 영향력 더 커져”…금리 내려도 ‘디스인플레’ 위험↑",
+          "link": "https://economist.co.kr/article/view/ecn202403140018"
+        },
+        {
+          "title": "미국 상업용 부동산發 리스크…SVB 뱅크런 사태 재현하나?",
+          "link": "https://economist.co.kr/article/view/ecn202403140016"
+        }
+      ]
+    },
+    {
+      "id": "bffa",
+      "pressName": "중앙SUNDAY",
+      "brandMark": "https://s.pstatic.net/static/newsstand/2020/logo/light/0604/353.png",
+      "editDate": "03월 13일 10:02 직접 편집",
+      "mainNews": {
+        "thumb": "https://s.pstatic.net/dthumb.phinf/?src=%22https%3A%2F%2Fs.pstatic.net%2Fstatic%2Fnewsstand%2F2024%2F0313%2Farticle_img%2Fnew_main%2F9227%2F101240_001.jpg%22&type=nf312_208&service=navermain",
+        "title": "\"이승만 평가, 공팔과이라 해도 인색하단 생각 들죠\"",
+        "link": "https://www.joongang.co.kr/article/25233936?utm_source=navernewsstand&utm_medium=referral&utm_campaign=left1image1_newsstand&utm_content=240313"
+      },
+      "newsList": [
+        {
+          "title": "\"사람은 괜찮은데 당은 꼽표…\" \"연고 없어 마땅찮아\"",
+          "link": "https://www.joongang.co.kr/article/25233965?utm_source=navernewsstand&utm_medium=referral&utm_campaign=left2image1_newsstand&utm_content=240313"
+        },
+        {
+          "title": "[뉴스분석] 제3지대 변수…총선 판도 흔들다",
+          "link": "https://www.joongang.co.kr/article/25233982?utm_source=navernewsstand&utm_medium=referral&utm_campaign=left2image2_newsstand&utm_content=240313"
+        },
+        {
+          "title": "'정용진의 신세계' 신규 출점 재개, 계열사 시너지 속도",
+          "link": "https://www.joongang.co.kr/article/25233976?utm_source=navernewsstand&utm_medium=referral&utm_campaign=left2image3_newsstand&utm_content=240313"
+        },
+        {
+          "title": "조력존엄사 선택할 권리, 아직 금기인가 이제 공감인가",
+          "link": "https://www.joongang.co.kr/article/25233950?utm_source=navernewsstand&utm_medium=referral&utm_campaign=left3article1_newsstand&utm_content=240313"
+        },
+        {
+          "title": "국립중앙박물관 33년 직원이 말하는 박물관의 힘",
+          "link": "https://www.joongang.co.kr/article/25233953?utm_source=navernewsstand&utm_medium=referral&utm_campaign=left3article2_newsstand&utm_content=240313"
+        },
+        {
+          "title": "이효리 버전, 정세운 버전…'1곡 2가수' 실험 끝냈죠",
+          "link": "https://www.joongang.co.kr/article/25233951?utm_source=navernewsstand&utm_medium=referral&utm_campaign=left3article3_newsstand&utm_content=240313"
+        }
+      ]
+    },
+    {
+      "id": "f49c",
+      "pressName": "디지털타임스",
+      "brandMark": "https://s.pstatic.net/static/newsstand/2020/logo/light/0604/029.png",
+      "editDate": "03월 15일 14:03 직접 편집",
+      "mainNews": {
+        "thumb": "https://s.pstatic.net/dthumb.phinf/?src=%22https%3A%2F%2Fs.pstatic.net%2Fstatic%2Fnewsstand%2F2024%2F0315%2Farticle_img%2Fnew_main%2F9024%2F141227_001.jpg%22&type=nf312_208&service=navermain",
+        "title": "[기획] 선거판 뒤흔들 `中틱톡` 금지령 확산",
+        "link": "https://www.dt.co.kr/contents.html?article_no=2024031502100131078001&naver=stand"
+      },
+      "newsList": [
+        {
+          "title": "콘텐츠 제작비 세액공제 30%로… 민관 합동 1조대 전략펀드 조성",
+          "link": "https://www.dt.co.kr/contents.html?article_no=2024031302109931078007&naver=stand"
+        },
+        {
+          "title": "`의대 증원` 배정위 본격 가동…의대생 어제 하루만 771명 `유효 휴학`",
+          "link": "https://www.dt.co.kr/contents.html?article_no=2024031502109931029006&naver=stand"
+        },
+        {
+          "title": "도태우 날린 국민의힘, 장예찬 `SNS 막말` 논란엔 \"태도 지켜볼 것\"",
+          "link": "https://www.dt.co.kr/contents.html?article_no=2024031502109958038002&naver=stand"
+        },
+        {
+          "title": "코스피 2700… 코스피 ‘1일천하’",
+          "link": "https://www.dt.co.kr/contents.html?article_no=2024031502109963077002&naver=stand"
+        },
+        {
+          "title": "`스타십` 실패 테슬라 4% 급락, 엔비디아·AMD 동반 하락, MS·애플 상승…뉴욕증시",
+          "link": "https://www.dt.co.kr/contents.html?article_no=2024031502109963040002&naver=stand"
+        },
+        {
+          "title": "“툭하면 ‘좌파’라 불려”…조국혁신당 리아, 한밤중 폭탄발언",
+          "link": "https://www.dt.co.kr/contents.html?article_no=2024031502109919079001&naver=stand"
+        }
+      ]
+    }
+  ]
 }

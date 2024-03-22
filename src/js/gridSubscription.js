@@ -4,16 +4,16 @@ import {
   deleteSubscriptionData,
 } from "../utils/pressDataApi.js";
 import { store } from "../../data/store.js";
+import { showSnackbar } from "../utils/snackbarFactory.js";
 
-const SNACKBAR_DURATION = 2000;
 const STORE_CHANGE_TIME = 100;
 
-export function handleSubscriptionOnClick() {
+export function handleGridSubsOnClick() {
   const gridWrap = document.querySelector(".grid");
-  gridWrap.addEventListener("click", subscriptionCallback);
+  gridWrap.addEventListener("click", gridSubsCallback);
 }
 
-function subscriptionCallback(event) {
+function gridSubsCallback(event) {
   if (
     event.target.innerText === "+ 구독하기" &&
     event.target.classList.contains("subs")
@@ -37,7 +37,7 @@ function subscribeGridPress(event) {
   const pressData = { pressName: pressName, brandMark: brandMark };
 
   postSubscriptionData("gridSubs", pressData);
-  showSubscriptionSnackbar("내가 구독한 언론사에 추가되었습니다.");
+  showSnackbar("내가 구독한 언론사에 추가되었습니다.");
   store.setState({ viewType: "grid", subsType: "on" });
 }
 
@@ -51,18 +51,8 @@ async function unsubscribGridPress(event) {
   const pressId = subsData.find((Obj) => Obj.pressName === pressName).id;
 
   deleteSubscriptionData("gridSubs", pressId);
-  showSubscriptionSnackbar("구독 해지되었습니다.");
+  showSnackbar("구독 해지되었습니다.");
   setTimeout(() => {
     store.setState({ viewType: "grid", subsType: "on" });
   }, STORE_CHANGE_TIME);
-}
-
-function showSubscriptionSnackbar(text) {
-  const snackbar = document.querySelector(".snackbar");
-  snackbar.textContent = text;
-  snackbar.classList.add("show");
-
-  setTimeout(() => {
-    snackbar.classList.remove("show");
-  }, SNACKBAR_DURATION);
 }
