@@ -4,7 +4,8 @@
   "description": "추가",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "live-server"
   },
   "keywords": [],
   "author": "",
@@ -12,6 +13,7 @@
   "dependencies": {
     "axios": "^1.6.7",
     "cheerio": "^1.0.0-rc.12",
+    "live-server": "^1.2.2",
     "puppeteer": "^22.3.0"
   },
   "devDependencies": {

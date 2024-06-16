@@ -1,10 +1,7 @@
 export class Store {
   constructor() {
     this.observers = [];
-    this.state = {
-      viewType: "grid",
-      subsType: "off",
-    };
+    this.state = {viewType: "grid",subsType: "off"};
   }
   addObserver(observer) {
     this.observers.push(observer);

@@ -1,59 +1,9 @@
 {
   "gridSubs": [
     {
-      "id": "169d",
-      "pressName": "문화일보",
-      "brandMark": "https://s.pstatic.net/static/newsstand/2020/logo/light/0604/021.png"
-    },
-    {
-      "id": "fd48",
-      "pressName": "서울신문",
-      "brandMark": "https://s.pstatic.net/static/newsstand/up/2022/0208/nsd16121208.png"
-    },
-    {
-      "id": "0fd4",
-      "pressName": "뉴스엔",
-      "brandMark": "https://s.pstatic.net/static/newsstand/2020/logo/light/0604/447.png"
-    },
-    {
-      "id": "0308",
-      "pressName": "TBS",
-      "brandMark": "https://s.pstatic.net/static/newsstand/2020/logo/light/0604/981.png"
-    },
-    {
-      "id": "17bd",
-      "pressName": "파이낸셜뉴스",
-      "brandMark": "https://s.pstatic.net/static/newsstand/2020/logo/light/0604/014.png"
-    },
-    {
-      "id": "2f6f",
-      "pressName": "Arirang TV",
-      "brandMark": "https://s.pstatic.net/static/newsstand/2020/logo/light/0604/934.png"
-    },
-    {
-      "id": "3560",
-      "pressName": "인사이트코리아",
-      "brandMark": "https://s.pstatic.net/static/newsstand/2020/logo/light/0604/807.png"
-    },
-    {
-      "id": "2c38",
-      "pressName": "조선일보",
-      "brandMark": "https://s.pstatic.net/static/newsstand/up/2020/0903/nsd185255316.png"
-    },
-    {
-      "id": "bc7c",
-      "pressName": "스포츠동아",
-      "brandMark": "https://s.pstatic.net/static/newsstand/2020/logo/light/0604/314.png"
-    },
-    {
       "id": "de35",
       "pressName": "중앙일보",
       "brandMark": "https://s.pstatic.net/static/newsstand/up/2021/0824/nsd115034872.png"
-    },
-    {
-      "id": "2bde",
-      "pressName": "프라임경제",
-      "brandMark": "https://s.pstatic.net/static/newsstand/up/2020/0730/nsd13728808.png"
     },
     {
       "id": "a623",
@@ -91,11 +41,6 @@
       "brandMark": "https://s.pstatic.net/static/newsstand/up/2024/0124/nsd95528325.png"
     },
     {
-      "id": "79b9",
-      "pressName": "코리아헤럴드",
-      "brandMark": "https://s.pstatic.net/static/newsstand/2020/logo/light/0604/044.png"
-    },
-    {
       "id": "e4e7",
       "pressName": "뉴스타파",
       "brandMark": "https://s.pstatic.net/static/newsstand/2020/logo/light/0604/930.png"
@@ -109,11 +54,6 @@
       "id": "22f5",
       "pressName": "오마이뉴스",
       "brandMark": "https://s.pstatic.net/static/newsstand/2020/logo/light/0604/047.png"
-    },
-    {
-      "id": "cb48",
-      "pressName": "티브이데일리",
-      "brandMark": "https://s.pstatic.net/static/newsstand/2020/logo/light/0604/440.png"
     },
     {
       "id": "dd77",
