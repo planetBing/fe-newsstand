@@ -102,19 +102,23 @@ npm start
 
 ### <strong>메인 화면</strong>
 
+![메인화면](https://github.com/planetBing/fe-eventloop/assets/150240792/7e685587-7368-47b6-98b4-84cc9b957e1e)
 <br>
 
 ### <strong>구독/해지 기능</strong>
 
 1. 그리드 뷰
+
+![그리드 뷰](https://github.com/planetBing/fe-eventloop/assets/150240792/1a688951-4c79-4c8d-8cf7-4dc0fa8b090a)
+
 2. 리스트 뷰
+
+![리스트 뷰](https://github.com/planetBing/fe-eventloop/assets/150240792/666160d1-2d05-4686-9c16-b05b2f739696)
 
    <div>
 </details>
 
 <br>
-
-### <strong>롤링 뉴스 기능</strong>
 
 # 🖥 **진행 체크리스트**
 
